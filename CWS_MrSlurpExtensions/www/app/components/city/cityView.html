@@ -1,0 +1,15 @@
+﻿<div class="container" ng-controller="CityCtrl as vm">
+    <h1 class="page-header">{{CityData.GlobalDistrict.DistrictName}}</h1>
+    <tabset>
+        <tab heading="City Vitals">
+            <ng-include
+                src="'./app/components/city/cityVitalsView.html'">
+            </ng-include>
+        </tab>
+        <tab heading="Full details">
+            <ng-include
+                src="'./app/components/city/cityFullView.html'">
+            </ng-include>
+        </tab>
+    </tabset>
+</div>

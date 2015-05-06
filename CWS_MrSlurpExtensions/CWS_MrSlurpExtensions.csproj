@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4258E52D-EE96-49B4-85A7-60C6C357001B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CWS_MrSlurpExtensions</RootNamespace>
+    <AssemblyName>CWS_MrSlurpExtensions</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\lib\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="CityWebServer.Extensibility, Version=1.0.5602.34598, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\CityWebServer.Extensibility.dll</HintPath>
+    </Reference>
+    <Reference Include="ColossalManaged">
+      <HintPath>..\lib\ColossalManaged.dll</HintPath>
+    </Reference>
+    <Reference Include="ICities">
+      <HintPath>..\lib\ICities.dll</HintPath>
+    </Reference>
+    <Reference Include="JsonFx">
+      <HintPath>..\lib\JsonFx.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\lib\UnityEngine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Extensions\DistrictExtension.cs" />
+    <Compile Include="Helpers\ApacheMimeTypes.cs" />
+    <Compile Include="Helpers\CitizenExtensions.cs" />
+    <Compile Include="Helpers\ReflectionUtils.cs" />
+    <Compile Include="Models\CityInfo.cs" />
+    <Compile Include="Models\PublicTransportLine.cs" />
+    <Compile Include="RequestHandlers\CityInfoRequestHandler.cs" />
+    <Compile Include="Models\DistrictInfo.cs" />
+    <Compile Include="Helpers\EnumExtensions.cs" />
+    <Compile Include="Helpers\NameValueCollectionExtensions.cs" />
+    <Compile Include="Models\PolicyInfo.cs" />
+    <Compile Include="Models\PopulationGroup.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestHandlers\CustomHomeRequestHandler.cs" />
+    <Compile Include="RequestHandlers\TransportRequestHandler.cs" />
+    <Compile Include="UserModInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="www\assets\js\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SelfNotes.txt" />
+    <Content Include="www\app\components\city\cityController.js" />
+    <Content Include="www\app\components\city\cityView.html" />
+    <Content Include="www\app\components\city\cityVitalsView.html" />
+    <Content Include="www\app\components\city\cityFullView.html" />
+    <Content Include="www\app\components\city\index.js" />
+    <Content Include="www\app\components\city\module.js" />
+    <Content Include="www\app\components\dataServices\cityInfoService.js" />
+    <Content Include="www\app\components\district\districtFullView.html" />
+    <Content Include="www\app\components\district\districtController.js" />
+    <Content Include="www\app\components\district\districtView.html" />
+    <Content Include="www\app\components\district\index.js" />
+    <Content Include="www\app\components\district\module.js" />
+    <Content Include="www\app\components\transport\transportService.js" />
+    <Content Include="www\app\components\transport\transportController.js" />
+    <Content Include="www\app\components\transport\transportView.html" />
+    <Content Include="www\app\shared\about\about.html" />
+    <Content Include="www\app\shared\header\headerView.html" />
+    <Content Include="www\app\shared\serviceBargraph\index.js" />
+    <Content Include="www\app\shared\serviceBargraph\serviceBargraphModule.js" />
+    <Content Include="www\app\shared\serviceBargraph\serviceBargraphView.html" />
+    <Content Include="www\app\shared\servicePanel\panelJobView.html" />
+    <Content Include="www\app\shared\servicePanel\panel2ConsoView.html" />
+    <Content Include="www\app\shared\servicePanel\panelConsoDistribConsoView.html" />
+    <Content Include="www\app\shared\servicePanel\index.js" />
+    <Content Include="www\app\shared\servicePanel\servicePanelModule.js" />
+    <Content Include="www\app\shared\servicePanel\panelConsoDistribView.html" />
+    <Content Include="www\app\shared\servicePieChart\servicePieChartUsage.html" />
+    <Content Include="www\app\shared\servicePieChart\index.js" />
+    <Content Include="www\app\shared\servicePieChart\consumptionIndicator.html" />
+    <Content Include="www\app\shared\servicePieChart\consumptionIndicator.js" />
+    <Content Include="www\app\shared\servicePieChart\serviceImportExportPieChartView.html" />
+    <Content Include="www\app\shared\servicePieChart\servicePieChartModule.js" />
+    <Content Include="www\app\shared\servicePieChart\servicePieChartView.html" />
+    <Content Include="www\assets\css\bootstrap.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\css\cityWebServer.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\css\nv.d3.css" />
+    <Content Include="www\assets\img\game\IconPolicyAlligatorBan.png" />
+    <Content Include="www\assets\img\game\IconPolicyAllowWeapons.png" />
+    <Content Include="www\assets\img\game\IconPolicyBigBusiness.png" />
+    <Content Include="www\assets\img\game\IconPolicyEducationBoost.png" />
+    <Content Include="www\assets\img\game\IconPolicyFarming.png" />
+    <Content Include="www\assets\img\game\IconPolicyFarmingDisabled.png" />
+    <Content Include="www\assets\img\game\IconPolicyFarmingPressed.png" />
+    <Content Include="www\assets\img\game\IconPolicyForest.png" />
+    <Content Include="www\assets\img\game\IconPolicyForestDisabled.png" />
+    <Content Include="www\assets\img\game\IconPolicyFreePublicTransport.png" />
+    <Content Include="www\assets\img\game\IconPolicyFreeTransport.png" />
+    <Content Include="www\assets\img\game\IconPolicyHeavyTrafficBan.png" />
+    <Content Include="www\assets\img\game\IconPolicyHighriseBan.png" />
+    <Content Include="www\assets\img\game\IconPolicyHighTechHousing.png" />
+    <Content Include="www\assets\img\game\IconPolicyIndustrySpace.png" />
+    <Content Include="www\assets\img\game\IconPolicyNoHomo.png" />
+    <Content Include="www\assets\img\game\IconPolicyNoHomoDisabled.png" />
+    <Content Include="www\assets\img\game\IconPolicyNone.png" />
+    <Content Include="www\assets\img\game\IconPolicyOil.png" />
+    <Content Include="www\assets\img\game\IconPolicyOilDisabled.png" />
+    <Content Include="www\assets\img\game\IconPolicyOre.png" />
+    <Content Include="www\assets\img\game\IconPolicyOreDisabled.png" />
+    <Content Include="www\assets\img\game\IconPolicyParksandRecreation.png" />
+    <Content Include="www\assets\img\game\IconPolicyPetBan.png" />
+    <Content Include="www\assets\img\game\IconPolicyPetBanDisabled.png" />
+    <Content Include="www\assets\img\game\IconPolicyPowerSaving.png" />
+    <Content Include="www\assets\img\game\IconPolicyPowerSavingDisabled.png" />
+    <Content Include="www\assets\img\game\IconPolicyRecreationalUse.png" />
+    <Content Include="www\assets\img\game\IconPolicyRecreationBoost.png" />
+    <Content Include="www\assets\img\game\IconPolicyRecycling.png" />
+    <Content Include="www\assets\img\game\IconPolicyRecyclingDisabled.png" />
+    <Content Include="www\assets\img\game\IconPolicySmallBusiness.png" />
+    <Content Include="www\assets\img\game\IconPolicySmokeDetectors.png" />
+    <Content Include="www\assets\img\game\IconPolicySmokeDetectorsDisabled.png" />
+    <Content Include="www\assets\img\game\IconPolicySmokingBan.png" />
+    <Content Include="www\assets\img\game\IconPolicySmokingBanDisabled.png" />
+    <Content Include="www\assets\img\game\IconPolicyTaxLowerComHigh.png" />
+    <Content Include="www\assets\img\game\IconPolicyTaxLowerComLow.png" />
+    <Content Include="www\assets\img\game\IconPolicyTaxLowerOffice.png" />
+    <Content Include="www\assets\img\game\IconPolicyTaxLowerResHigh.png" />
+    <Content Include="www\assets\img\game\IconPolicyTaxLowerResLow.png" />
+    <Content Include="www\assets\img\game\IconPolicyTaxRaiseComHigh.png" />
+    <Content Include="www\assets\img\game\IconPolicyTaxRaiseIndustrial.png" />
+    <Content Include="www\assets\img\game\IconPolicyTaxRaiseOffice.png" />
+    <Content Include="www\assets\img\game\IconPolicyTaxRaiseResHigh.png" />
+    <Content Include="www\assets\img\game\IconPolicyTaxRaiseResLow.png" />
+    <Content Include="www\assets\img\game\IconPolicyWaterSaving.png" />
+    <Content Include="www\assets\img\game\IconPolicyWaterSavingDisabled.png" />
+    <Content Include="www\assets\img\game\InfoIconCrime.png" />
+    <Content Include="www\assets\img\game\InfoIconFireSafety.png" />
+    <Content Include="www\assets\img\game\InfoIconGarbage.png" />
+    <Content Include="www\assets\img\game\InfoIconHappiness.png" />
+    <Content Include="www\assets\img\game\InfoIconHealth.png" />
+    <Content Include="www\assets\img\game\InfoIconLandValue.png" />
+    <Content Include="www\assets\img\game\InfoIconLevel.png" />
+    <Content Include="www\assets\img\game\InfoIconNoisePollution.png" />
+    <Content Include="www\assets\img\game\InfoIconOutsideConnections.png" />
+    <Content Include="www\assets\img\game\InfoIconPollution.png" />
+    <Content Include="www\assets\img\game\InfoIconPopulation.png" />
+    <Content Include="www\assets\img\game\InfoIconPublicTransport.png" />
+    <Content Include="www\assets\img\game\InfoIconTrafficCongestion.png" />
+    <Content Include="www\assets\img\game\InfoIconWater.png" />
+    <Content Include="www\assets\libs\angularjs-dropdown-multiselect.min.js" />
+    <Content Include="www\assets\libs\angularjs-nvd3-directives.js" />
+    <Content Include="www\assets\libs\angularjs-nvd3-directives.min.js" />
+    <Content Include="www\assets\libs\d3.js" />
+    <Content Include="www\assets\libs\lodash.js" />
+    <Content Include="www\assets\libs\moment.js" />
+    <Content Include="www\assets\libs\nv.d3.js" />
+    <Content Include="www\assets\libs\ui-bootstrap-tpls.js" />
+    <Content Include="www\citiesApp.js" />
+    <Content Include="www\main.js" />
+    <Content Include="www\assets\libs\angular-route.js" />
+    <Content Include="www\assets\libs\angular-route.min.js" />
+    <Content Include="www\assets\libs\angular.js" />
+    <Content Include="www\assets\libs\angular.min.js" />
+    <Content Include="www\assets\libs\bootstrap.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\libs\jquery.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\libs\require.js" />
+    <Content Include="www\index.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="www\assets\fonts\glyphicons-halflings-regular.eot" />
+    <None Include="www\assets\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="www\assets\fonts\glyphicons-halflings-regular.ttf" />
+    <None Include="www\assets\fonts\glyphicons-halflings-regular.woff" />
+    <None Include="www\assets\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="www\SlurpUI\CityInfo2" />
+    <Content Include="www\transport.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="www\SlurpUI\CityInfo" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>mkdir "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(SolutionName)_$(ProjectName)"
+del "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(SolutionName)_$(ProjectName)\$(TargetFileName)"
+xcopy /Y "$(TargetPath)" "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(SolutionName)_$(ProjectName)"
+xcopy /Y "$(TargetDir)CityWebServer.Extensibility.dll" "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(SolutionName)_$(ProjectName)\*.*"
+xcopy /Y "$(TargetDir)Jsonfx.dll" "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(SolutionName)_$(ProjectName)\*.*"
+xcopy /Y /E "$(TargetDir)www\*.*" "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(SolutionName)_$(ProjectName)\www\*.*"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Cities: Skylines - Test</title>
+    <link href="slurpui/style/bootstrap.min.css" rel="stylesheet" type="text/css" media="screen, projection"/>
+    <link href="slurpui/style/cityWebServer.css" rel="stylesheet" type="text/css" media="screen, projection"/>
+    <script src='slurpui/script/jquery-2.1.3.min.js'></script>
+    <script src='slurpui/script/bootstrap.min.js'></script>
+    <script src='slurpui/script/knockout-3.3.0.js'></script>
+    <script src='slurpui/script/knockout.mapping-latest.js'></script>
+    <script src="slurpui/script/highcharts.js"></script>
+    <script src="slurpui/script/script.js"></script>
+
+    <style type="text/css">
+        body { padding-top: 50px; }
+    </style>
+</head>
+<body>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/"><span>Transport</span></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="/Log">Log</a></li>
+                    <!-- TODO: Dynamically populate this with links to other handlers.  -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <script type="text/html" id="transportLine-template" >
+        <div data-bind="foreach :$data" >
+            <div class="transportLinePanel" >
+                <div class="transportLineheader" data-bind="text: Name" >name</div>
+                <div class="transportInfoTable">
+                    <div style="display:table-row;" >
+                        <div style="display:table-cell;width:10%;" >Vehicule count</div>
+                        <div style="width:10%;" class="districtInfoValueCell" data-bind="text: VehicleCount" ></div>
+                        <div style="display:table-cell;width:10%;" >Stop count</div>
+                        <div style="width:10%;" class="districtInfoValueCell" data-bind="text: StopCount" ></div>
+                        <div style="display:table-cell;width:10%;" >Resident users</div>
+                        <div style="width:10%;" class="districtInfoValueCell" data-bind="text: ResidentUsers" ></div>
+                        <div style="display:table-cell;width:10%;" >Color</div>
+                        <div style="display:table-cell;width:10%;" 
+                            data-bind="style:{background: (LineColor() != 'default' ? LineColor() : '')},
+                            text:(LineColor() != 'default' ? '' : 'default')" ></div>
+
+                    </div>
+                </div>
+                <div class="transportInfoTable">
+                    <div style="display:table-row;" >
+                        <div style="display:table-cell; width:20%;" >Passengers age repartition</div>
+                        <div style="display:table-cell; width:80%;" >
+                            <div class="progress progress-no-bottom-margin" style="position:relative;" >
+                                <!-- ko foreach: Passengers -->
+                                <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" 
+                                        data-bind="css:'progress-bar progress-bar-population-'+serviceNameToClassSuffix(Name()),
+                                                style:{width: getPercentage(Amount(), $parent.TotalPassengers())+'%'}" >
+                                </div>
+                                <!-- /ko -->
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display:table-row;" >
+                        <div style="display:table-cell; width:20%;" >Car trips saved</div>
+                        <div style="display:table-cell; width:80%;" >
+                            <div class="progress progress-no-bottom-margin" style="position:relative;" >
+                                <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" 
+                                        class="progress-bar progress-bar-service-cartripsaved"
+                                        data-bind="style:{width: CarTripSaved() + '%'}" >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <div class="container">
+        <h1>Cities: Skylines - Integrated Web Server</h1>
+        <div id="jobColorLegend" >
+            <div class="progress progress-no-bottom-margin" style="position:relative;" >
+                <div class="progress-bar progress-bar-population-children" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 15%;" >
+                    <span>Childs</span>
+                </div>
+                <div class="progress-bar progress-bar-population-teen" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 15%;" >
+                    <span>Teens</span>
+                </div>
+                <div class="progress-bar progress-bar-population-youngadult" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 15%;" >
+                    <span>Young adults</span>
+                </div>
+                <div class="progress-bar progress-bar-population-adult" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 15%;" >
+                    <span>Adults</span>
+                </div>
+                <div class="progress-bar progress-bar-population-senior" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 15%;" >
+                    <span>Senior</span>
+                </div>
+                <div class="progress-bar progress-bar-population-tourist" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 15%;" >
+                    <span>Tourists</span>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+              <div class="panel-title">
+                  <span style="float:left;">Bus lines</span>
+                  <button type="button" class="btn btn-heading" style="float:right;" data-toggle="collapse" data-target="#panelBusLines">Toggle</button>
+                  <div style="clear:both;" > </div>
+              </div>
+            </div>
+            <div id="panelBusLines" class="panel-body collapse in">
+                <div data-bind="template:{name:'transportLine-template', data: BusLines}" ></div>
+            </div>
+          </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <span style="float:left;">Metro lines</span>
+                    <button type="button" class="btn btn-sucess" style="float:right;" data-toggle="collapse" data-target="#panelMetroLines">Toggle</button>
+                    <div style="clear:both;" > </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div id="panelMetroLines" class="panel-body collapse in">
+                    <div data-bind="template:{name:'transportLine-template', data: MetroLines}" ></div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <span style="float:left;">Train lines</span>
+                    <button type="button" class="btn btn-default" style="float:right;" data-toggle="collapse" data-target="#panelTrainLines">Toggle</button>
+                    <div style="clear:both;" > </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div id="panelTrainLines" class="panel-body collapse in">
+                    <div data-bind="template:{name:'transportLine-template', data: TrainLines}" ></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+
+        var endpoint = "SlurpUI/Transport";
+        var viewModel;
+        var chart;
+        var initialized = false;
+        var lastDate;
+        function update() {
+            $.getJSON('http://' + window.location.hostname + ':' + window.location.port + '/' + endpoint, function (data) {
+                console.log(data);
+                if (initialized) {
+                    ko.mapping.fromJS(data, viewModel);
+                } else {
+                    initialized = true;
+                    viewModel = ko.mapping.fromJS(data);
+                    ko.applyBindings(viewModel);
+                }
+            });
+        }
+
+        // Update the data once every second.
+        window.setInterval(update, 5000); // Every two seconds.
+        update();
+    </script>
+</body>
+</html>

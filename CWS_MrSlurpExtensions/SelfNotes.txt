@@ -1,0 +1,22 @@
+﻿Important information for playing => vitals
+- Electricty : consumtpion
+- Water : consumption
+- sewage : treatment
+- landfill usage
+- incineration status
+- cemetery usage
+- crematorium availability
+- 3 school usage
+- employement rate
+- average health
+- fire hazrd
+- crime rates
+
+=> this mean that the city view main page must display : 
+- Elec
+- Water (sewage)
+- Garbage
+- healthcare
+- deathcare
+- education
+- workers/jobs

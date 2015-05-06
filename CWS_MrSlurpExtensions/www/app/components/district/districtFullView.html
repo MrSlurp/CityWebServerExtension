@@ -1,0 +1,284 @@
+﻿<div class="row-fluid">
+    <!-- elec -->
+    <div class="col-sm-6">
+        <panel-conso-distrib
+            production-service="globalDistrict.Consumptions.Electricity"
+            consumption-service="dist.Consumptions.Electricity"
+            distribution-service="dist.Consumptions.Electricity"
+            service-icon="ToolbarIconElectricity.png"
+            distrib-icon="ToolbarIconZoning.png"
+            description="City electricity used by district"
+            distribution-description="District electricity consumption distribution by building type"
+            panel-title="Electricity"
+            percent-color-family="power"
+            distrib-color-family="service">
+        </panel-conso-distrib>
+    </div>
+    <!-- Water -->
+    <div class="col-sm-9" >
+        <panel-conso-distrib-conso
+            production-service-a="globalDistrict.Productions.Water"
+            consumption-service-a="dist.Consumptions.Water"
+            production-service-b="globalDistrict.Productions.Sewage"
+            consumption-service-b="dist.Consumptions.Sewage"
+            distribution-service="dist.Consumptions.Water"
+            description-service-a="City water capacity used by district"
+            description-service-b="City sewage capacity used by district"
+            distribution-description="District water consumption distribution by building type"
+            service-icon-a="ToolbarIconWater.png"
+            distrib-icon="ToolbarIconZoning.png"
+            service-icon-b="ToolbarIconSewage.png"
+            panel-title="Water"
+            percent-color-family-a="water"
+            percent-color-family-b="sewage"
+            distrib-color-family="service">
+        </panel-conso-distrib-conso>
+    </div>
+    <!-- garbages -->
+    <div class="col-sm-6">
+        <panel-conso-distrib
+            production-service="globalDistrict.Consumptions.Garbage"
+            consumption-service="dist.Consumptions.Garbage"
+            distribution-service="dist.Consumptions.Garbage"
+            service-icon="InfoIconGarbage.png"
+            distrib-icon="ToolbarIconZoning.png"
+            description="District garbage production of city total"
+            distribution-description="District garbage production distribution by building type"
+            panel-title="Garbage"
+            percent-color-family="garbage"
+            distrib-color-family="service">
+        </panel-conso-distrib>
+    </div>
+</div>
+<div class="row-fluid">
+    <!-- Educated/work 
+        if population is 0, there is not reasons to display this panel
+        -->
+    <div class="col-sm-12" ng-show="IsPanelInfoValuable(dist.Population)">
+        <div class="panel panel-info">
+            <div class="panel-heading"><div class="panel-title"><span >Workers</span></div></div>
+            <div class="row">
+                <div class ="col-xs-6" >
+                    <service-pie-chart-usage
+                        production-data="dist.Population"
+                        consumption-data="dist.Educated.EligibleWorkers"
+                        color-family="workers"
+                        description="District workers in district population">
+                    </service-pie-chart-usage>
+                </div>
+                <div class ="col-xs-6">
+                    <service-pie-chart 
+                        data="dist.Educated.EligibleWorkers" 
+                        color-family="education" 
+                        description="District workers education level distribution">
+                    </service-pie-chart>
+                </div>
+                <div class ="col-xs-6">
+                    <service-pie-chart-usage
+                        production-data="dist.Educated.EligibleWorkers"
+                        consumption-data="dist.Educated.Unemployed"
+                        color-family="unumployed"
+                        description="District unemployed workers">
+                    </service-pie-chart-usage>
+                </div>
+                <div class ="col-xs-6">
+                    <service-pie-chart 
+                        data="dist.Educated.Unemployed" 
+                        color-family="education" 
+                        description="District unemployed people education level distribution">
+                    </service-pie-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Education -->
+    <div ng-class=" 'col-sm-'+SmartColumnLayoutPanel(3,dist.Productions.LowEducation, dist.Productions.MediumEducation, dist.Productions.HighEducation, dist.Educated.Total)"
+        ng-show="IsPanelInfoValuable(dist.Productions.LowEducation, dist.Productions.MediumEducation, dist.Productions.HighEducation, dist.Educated.Total)">
+        <div class="panel panel-info" 
+            ng-show="IsPanelInfoValuable(dist.Productions.LowEducation, dist.Productions.MediumEducation, dist.Productions.HighEducation, dist.Educated.Total)">
+            <div class="panel-heading"><div class="panel-title"><span >Education</span></div></div>
+            <div class="row">
+                <div ng-class="'col-sm-'+SmartColumnLayoutElement(dist.Productions.LowEducation, dist.Productions.MediumEducation, dist.Productions.HighEducation, dist.Educated.Total)"
+                        ng-show="IsPanelInfoValuable(dist.Productions.LowEducation)">
+                    <service-pie-chart-usage
+                        production-data="dist.Productions.LowEducation"
+                        consumption-data="dist.Students.LowStudent"
+                        color-family="education1"
+                        description="District elementary schools usage">
+                    </service-pie-chart-usage>
+                </div>
+                <div ng-class="'col-sm-'+SmartColumnLayoutElement(dist.Productions.LowEducation, dist.Productions.MediumEducation, dist.Productions.HighEducation, dist.Educated.Total)"
+                    ng-show="IsPanelInfoValuable(dist.Productions.MediumEducation)">
+                    <service-pie-chart-usage
+                        production-data="dist.Productions.MediumEducation"
+                        consumption-data="dist.Students.MediumStudent"
+                        color-family="education2"
+                        description="District colleges usage">
+                    </service-pie-chart-usage>
+                </div>
+                <div ng-class="'col-sm-'+SmartColumnLayoutElement(dist.Productions.LowEducation, dist.Productions.MediumEducation, dist.Productions.HighEducation, dist.Educated.Total)"
+                    ng-show="IsPanelInfoValuable(dist.Productions.HighEducation)">
+                    <service-pie-chart-usage
+                        production-data="dist.Productions.HighEducation"
+                        consumption-data="dist.Students.HighStudent"
+                        color-family="education3"
+                        description="District university usage">
+                    </service-pie-chart-usage>
+                </div>
+                <div ng-class="'col-sm-'+SmartColumnLayoutElement(dist.Productions.LowEducation, dist.Productions.MediumEducation, dist.Productions.HighEducation, dist.Educated.Total)"
+                    ng-show="IsPanelInfoValuable(dist.Educated.Total)">
+                    <service-pie-chart 
+                        data="dist.Educated.Total" 
+                        color-family="education" 
+                        description="District population education level distribution" >
+                    </service-pie-chart>
+                </div>
+            </div>
+        </div>
+    </div>  
+    <!-- Import/export -->
+    <div ng-class=" 'col-sm-'+SmartColumnLayoutPanel(3,dist.ImportExport.Import, dist.ImportExport.Export, (dist.ImportExport.Import.TotalCurrent!=0 || dist.ImportExport.Export.TotalCurrent != 0) )"
+        ng-show="IsPanelInfoValuable(dist.ImportExport.Import, dist.ImportExport.Export, (dist.ImportExport.Import.TotalCurrent!=0 || dist.ImportExport.Export.TotalCurrent != 0))">
+        <div class="panel panel-info">
+            <div class="panel-heading"><div class="panel-title"><span >Import/Export</span></div></div>
+            <div class="row">
+                <div ng-class="'col-sm-'+SmartColumnLayoutElement(dist.ImportExport.Import, dist.ImportExport.Export, (dist.ImportExport.Import.TotalCurrent!=0 || dist.ImportExport.Export.TotalCurrent != 0))"
+                    ng-show="IsPanelInfoValuable(dist.ImportExport.Import)">
+                    <service-pie-chart 
+                        data="dist.ImportExport.Import" 
+                        color-family="service" 
+                        description="District imports distribution by type">
+                    </service-pie-chart>
+                </div>
+                <div ng-class="'col-sm-'+SmartColumnLayoutElement(dist.ImportExport.Import, dist.ImportExport.Export, (dist.ImportExport.Import.TotalCurrent!=0 || dist.ImportExport.Export.TotalCurrent != 0))"
+                    ng-show="IsPanelInfoValuable(dist.ImportExport.Export)">
+                    <service-pie-chart 
+                        data="dist.ImportExport.Export" 
+                        color-family="service" 
+                        description="District exports distribution by type">
+                    </service-pie-chart>
+                </div>
+                <div ng-class="'col-sm-'+SmartColumnLayoutElement(dist.ImportExport.Import, dist.ImportExport.Export, (dist.ImportExport.Import.TotalCurrent!=0 || dist.ImportExport.Export.TotalCurrent != 0))">
+                    <service-import-export-repartition-chart
+                        color-family="service"
+                        import-total="{{dist.ImportExport.Import.TotalCurrent}}"
+                        export-total="{{dist.ImportExport.Export.TotalCurrent}}"
+                        description="Imports/Exports Ratio">
+                    </service-import-export-repartition-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Others -->
+    <div ng-class=" 'col-sm-'+SmartColumnLayoutPanel(3,dist.Households, dist.Consumptions.Building, dist.Population )"
+        ng-show="IsPanelInfoValuable(dist.Households, dist.Consumptions.Building, dist.Population)">
+        <div class="panel panel-info">
+            <div class="panel-heading"><div class="panel-title"><span >Others</span></div></div>
+            <div class="row">
+                <div ng-class="'col-sm-'+SmartColumnLayoutElement(dist.Households, dist.Consumptions.Building, dist.Population)"
+                    ng-show="IsPanelInfoValuable(dist.Households)">
+                    <indicator-widget 
+                        total="dist.Households.TotalAvailable"
+                        actual="dist.Households.TotalCurrent" 
+                        description-tip="District households usage">
+                    </indicator-widget>
+                </div>
+
+                <div ng-class="'col-sm-'+SmartColumnLayoutElement(dist.Households, dist.Consumptions.Building, dist.Population)"
+                    ng-show="IsPanelInfoValuable(dist.Consumptions.Building)">
+                    <service-pie-chart 
+                        data="dist.Consumptions.Building" 
+                        color-family="service" 
+                        description="District buildings distribution">
+                    </service-pie-chart>
+                </div>
+                <div ng-class="'col-sm-'+SmartColumnLayoutElement(dist.Households, dist.Consumptions.Building, dist.Population)"
+                    ng-show="IsPanelInfoValuable(dist.Population)">
+                    <service-pie-chart 
+                        data="dist.Population" 
+                        color-family="populationages"
+                        description="District population age distribution" >
+                    </service-pie-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- DeathCare -->
+    <div class="col-xs-6" ng-show="IsPanelInfoValuable(dist.Consumptions.Dead)" >
+        <div class="panel panel-info">
+            <div class="panel-heading"><div class="panel-title"><span >Deathcare</span></div></div>
+            <div class="row">
+                <div class="col-xs-12" style="position:relative">
+                    <img ng-src="assets/img/game/ToolbarIconCemetery.png" style="position:absolute;width:20%;height:20%;" />
+                    <service-pie-chart-usage
+                        production-data="globalDistrict.Consumptions.Dead"
+                        consumption-data="dist.Consumptions.Dead"
+                        color-family="death"
+                        description="City cemetery usage">
+                    </service-pie-chart-usage>
+                </div>
+                <div class="col-xs-12" style="position:relative">
+                    <img ng-src="assets/img/game/ToolbarIconCremation.png" style="position:absolute;width:20%;height:20%;" />
+                    <service-pie-chart-usage
+                        production-data="globalDistrict.Productions.Cremate"
+                        consumption-data="dist.Consumptions.Dead"
+                        color-family="garbage"
+                        description="City crematorium capacity usage">
+                    </service-pie-chart-usage>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Healthcare -->
+    <div class="col-sm-6" ng-show="IsPanelInfoValuable(dist.Consumptions.Sick, dist.BirthDeath)">
+        <div class="panel panel-info">
+            <div class="panel-heading"><div class="panel-title"><span >Healthcare</span></div></div>
+            <div class="row">
+                <div class="col-xs-12" style="position:relative">
+                    <img ng-src="assets/img/game/ToolbarIconHealthcare.png" style="position:absolute;width:20%;height:20%;" />
+                    <service-pie-chart-usage
+                        production-data="globalDistrict.Consumptions.Sick"
+                        consumption-data="dist.Consumptions.Sick"
+                        color-family="health"
+                        description="Percentage of clinics & hospitals occupied places">
+                    </service-pie-chart-usage>
+                </div>
+                <div class="col-xs-12" >
+                    <service-pie-chart
+                        data="dist.BirthDeath"
+                        color-family="birthdeath"
+                        description="Births/Deaths balance">
+                    </service-pie-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jobs -->
+    <div class="col-sm-8">
+        <panel-job panel-title="Jobs"
+            job-data="dist.Jobs"
+            percentage-of-label="(% of district)">
+        </panel-job>
+    </div>
+    <!--happiness / crime-->
+    <div class="col-sm-8">
+        <div class="panel panel-info">
+            <div class="panel-heading"><div class="panel-title"><span >Happiness & Criminality</span></div></div>
+            <div class="row">
+                <div class ="col-xs-12" >
+                    <service-bargraph-percent
+                        service-data="dist.Happiness"
+                        xaxis-label="Happiness in %">
+                    </service-bargraph-percent>
+                </div>
+                <div class ="col-xs-12" >
+                    <service-bargraph-percent
+                        service-data="dist.Crime"
+                        xaxis-label="Criminality in %">
+                    </service-bargraph-percent>
+                </div>
+            </div>
+        </div>
+    </div>  
+</div>
