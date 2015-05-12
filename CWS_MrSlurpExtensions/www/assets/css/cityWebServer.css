@@ -15,17 +15,17 @@ body {
 
 /* mon height for colum => fix the fluid layout issue in FF*/
 @media (min-width: 768px) {
-    [class*="col-"] {
+    .panel [class*="col-"] {
 		min-height:70px;
     }
 }
 @media (min-width: 992px) {
-    [class*="col-"] {
+    .panel [class*="col-"] {
 		min-height:100px;
     }
 }
 @media (min-width: 1200px) {
-    [class*="col-"] {
+    .panel [class*="col-"] {
 		min-height:130px;
     }
 }
