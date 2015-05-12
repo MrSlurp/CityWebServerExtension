@@ -83,6 +83,28 @@ namespace CWS_MrSlurpExtensions
             return lineModels;
         }
 
+        private List<Vehicle> GetLineVehicles(TransportLine line)
+        {
+            List<Vehicle> lineVehicles = new List<Vehicle>();
+            if (line.m_vehicles != 0)
+            {
+                VehicleManager instance = Singleton<VehicleManager>.instance;
+                ushort currentVehicle = line.m_vehicles;
+                int index = 0;
+                while (currentVehicle != 0)
+                {
+                    lineVehicles.Add(instance.m_vehicles.m_buffer[(int)currentVehicle]);
+                    ushort nextLineVehicle = instance.m_vehicles.m_buffer[(int)currentVehicle].m_nextLineVehicle;
+                    currentVehicle = nextLineVehicle;
+                    if (++index > VehicleManager.MAX_VEHICLE_COUNT)
+                    {
+                        break;
+                    }
+                }
+            }
+            return lineVehicles;
+        }
+
         // code from https://github.com/justacid/Skylines-ExtendedPublicTransport/blob/master/ExtendedPublicTransportUI/TransportUtil.cs
         private int GetTripsSaved(TransportLine line)
         {

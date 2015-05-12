@@ -20,3 +20,30 @@
 - deathcare
 - education
 - workers/jobs
+
+
+Pour attaquer les données des véhicules des lignes de transports, on part de la transport line:
+- m_vehicles semble correspondre à l'index du premier vehicule de la ligne;
+- le véhicule pointé est accessible ainsi :
+ Singleton<VehicleManager>.instance.m_vehicles.m_buffer[(int)num2]
+
+ Ce même véhicule ainsi obtenu : m_nextLineVehicle
+
+	List<ushort> LineVehicles = new List<ushort>();
+
+	if (this.m_vehicles != 0)
+	{
+		VehicleManager instance = Singleton<VehicleManager>.instance;
+		ushort currentVehicle = this.m_vehicles;
+		int index = 0;
+		while (currentVehicle != 0)
+		{
+			LineVehicles.add(currentVehicle);
+			ushort nextLineVehicle = instance.m_vehicles.m_buffer[(int)num2].m_nextLineVehicle;
+			currentVehicle = nextLineVehicle;
+			if (++index > 16384)
+			{
+				return;
+			}
+		}
+	}

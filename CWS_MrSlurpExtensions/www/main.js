@@ -19,7 +19,7 @@ require.config({
         nvd3: { deps: ['angular', 'd3'] },
         nvd3directives: {deps: ['angular', 'nvd3']},
         dropdownSelect: { deps: ['angular', 'lodash'] },
-        bootstrapUI: { deps: ['angular'] },
+        bootstrapUI: { deps: ['angular'] }
     }
 });
 

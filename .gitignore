@@ -190,3 +190,6 @@ ColossalManaged.dll
 ICities.dll
 UnityEngine.dll
 UnityEngine.UI.dll
+# third party assemblies
+JsonFx.dll
+CityWebServer.Extensibility.dll

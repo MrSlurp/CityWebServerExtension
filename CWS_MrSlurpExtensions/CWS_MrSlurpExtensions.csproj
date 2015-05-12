@@ -64,6 +64,7 @@
     <Compile Include="Helpers\ReflectionUtils.cs" />
     <Compile Include="Models\CityInfo.cs" />
     <Compile Include="Models\PublicTransportLine.cs" />
+    <Compile Include="Models\VehiclesInfo.cs" />
     <Compile Include="RequestHandlers\CityInfoRequestHandler.cs" />
     <Compile Include="Models\DistrictInfo.cs" />
     <Compile Include="Helpers\EnumExtensions.cs" />
@@ -224,8 +225,6 @@
     <PostBuildEvent>mkdir "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(SolutionName)_$(ProjectName)"
 del "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(SolutionName)_$(ProjectName)\$(TargetFileName)"
 xcopy /Y "$(TargetPath)" "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(SolutionName)_$(ProjectName)"
-xcopy /Y "$(TargetDir)CityWebServer.Extensibility.dll" "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(SolutionName)_$(ProjectName)\*.*"
-xcopy /Y "$(TargetDir)Jsonfx.dll" "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(SolutionName)_$(ProjectName)\*.*"
 xcopy /Y /E "$(TargetDir)www\*.*" "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(SolutionName)_$(ProjectName)\www\*.*"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

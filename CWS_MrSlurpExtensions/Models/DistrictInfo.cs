@@ -38,6 +38,8 @@ namespace CWS_MrSlurpExtensions
 
         public Dictionary<string, DistrictServiceData> ImportExport { get; set; }
 
+        public VehiclesInfo Vehicles { get; set; }
+
         public PolicyInfo[] Policies { get; set; }
 
         #region servica data structure classes
@@ -287,6 +289,16 @@ namespace CWS_MrSlurpExtensions
                 Policies = GetPolicies().ToArray(),
 
             };
+            if (districtID != 0)
+            {
+                CityInfoRequestHandler.LogMessages("Building vehicles for", districtID.ToString());
+                model.Vehicles = new VehiclesInfo(districtID);
+            }
+            else
+            {
+                CityInfoRequestHandler.LogMessages("Building vehicles for city");
+                model.Vehicles = new VehiclesInfo();
+            }
             return model;
         }
 
