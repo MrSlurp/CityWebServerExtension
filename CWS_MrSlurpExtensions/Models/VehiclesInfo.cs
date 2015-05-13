@@ -9,6 +9,7 @@ namespace CWS_MrSlurpExtensions
 {
     public class VehiclesInfo
     {
+        private DistrictManager districtManager = Singleton<DistrictManager>.instance;
 
         Dictionary<string, int> general = new Dictionary<string, int>{
                                                     {"activeVehicles",0},
@@ -36,35 +37,43 @@ namespace CWS_MrSlurpExtensions
             get { return cityMaintenanceVehicle; }
         }
 
-        Dictionary<string, Dictionary<string, int>> cityServicesVehicles = new Dictionary<string, Dictionary<string, int>>{
-                                                    {"Commercial",new Dictionary<string, int>{
+        Dictionary<string, Dictionary<string, object>> cityServicesVehicles = new Dictionary<string, Dictionary<string, object>>{
+                                                    {"Commercial",new Dictionary<string, object>{
                                                         {"imports",0},
                                                         {"exports",0},
                                                         {"intra",0},
                                                         {"total",0},
+                                                        {"srcDistricts", null},
+                                                        {"dstDistricts", null}
                                                     }},
-                                                    {"Industrial",new Dictionary<string, int>{
+                                                    {"Industrial",new Dictionary<string, object>{
                                                         {"imports",0},
                                                         {"exports",0},
                                                         {"intra",0},
                                                         {"total",0},
+                                                        {"srcDistricts", null},
+                                                        {"dstDistricts", null}
                                                     }},
-                                                    {"Office",new Dictionary<string, int>{
+                                                    {"Office",new Dictionary<string, object>{
                                                         {"imports",0},
                                                         {"exports",0},
                                                         {"intra",0},
                                                         {"total",0},
+                                                        {"srcDistricts", null},
+                                                        {"dstDistricts", null}
                                                     }},
-                                                    {"PublicTransport",new Dictionary<string, int>{
+                                                    {"PublicTransport",new Dictionary<string, object>{
                                                         {"bus",0},
                                                         {"metro",0},
                                                         {"train",0},
                                                         {"ship",0},
                                                         {"plane",0},
+                                                        {"srcDistricts", null},
+                                                        {"dstDistricts", null}
                                                     }},
                                                 };
 
-        public Dictionary<string, Dictionary<string, int>> CityServicesVehicles
+        public Dictionary<string, Dictionary<string, object>> CityServicesVehicles
         {
             get { return cityServicesVehicles; }
         }
@@ -89,7 +98,6 @@ namespace CWS_MrSlurpExtensions
             if (vehicles == null)
                 yield break;
 
-            var districtManager = Singleton<DistrictManager>.instance;
             foreach (var vehicle in vehicles)
             {
                 if (!((vehicle.Info.m_vehicleType & vType) == vType))
@@ -172,10 +180,11 @@ namespace CWS_MrSlurpExtensions
         {
             bool importing = (vehicle.m_flags & Vehicle.Flags.Importing) == Vehicle.Flags.Importing;
             bool exporting = (vehicle.m_flags & Vehicle.Flags.Exporting) == Vehicle.Flags.Exporting;
-            CityServicesVehicles[serviceName]["imports"] += importing? 1:0;
-            CityServicesVehicles[serviceName]["exports"] += exporting? 1:0;
-            CityServicesVehicles[serviceName]["intra"] += (!exporting && !importing) ? 1:0;
-            CityServicesVehicles[serviceName]["total"] += 1;
+            CityServicesVehicles[serviceName]["imports"] = (int)CityServicesVehicles[serviceName]["imports"] + (importing? 1:0);
+            CityServicesVehicles[serviceName]["exports"] = (int)CityServicesVehicles[serviceName]["exports"] + (exporting ? 1 : 0);
+            CityServicesVehicles[serviceName]["intra"] = (int)CityServicesVehicles[serviceName]["intra"] + ((!exporting && !importing) ? 1 : 0);
+            CityServicesVehicles[serviceName]["total"] = (int)CityServicesVehicles[serviceName]["total"] + 1;
+            CityServicesVehicles[serviceName]["srcDistricts"] = 
         }
 
         public VehiclesInfo(int? districId = null)

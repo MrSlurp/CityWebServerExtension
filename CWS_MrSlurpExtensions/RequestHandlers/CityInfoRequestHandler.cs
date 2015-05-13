@@ -8,6 +8,7 @@ using ColossalFramework;
 using UnityEngine;
 using JetBrains.Annotations;
 using System.Collections;
+using System.Diagnostics;
 
 namespace CWS_MrSlurpExtensions
 {
@@ -15,6 +16,8 @@ namespace CWS_MrSlurpExtensions
     public class CityInfoRequestHandler : RequestHandlerBase
     {
         private static CityInfoRequestHandler _instance;
+
+        private static bool EnableLog = false;
         public static CityInfoRequestHandler Instance 
         { 
             get
@@ -25,7 +28,7 @@ namespace CWS_MrSlurpExtensions
 
         public static void LogMessages(params string[] messages)
         {
-            if (_instance != null)
+            if (_instance != null && EnableLog)
             {
                 string result=string.Empty;
                 foreach (var message in messages)
@@ -39,6 +42,9 @@ namespace CWS_MrSlurpExtensions
             : base(server, new Guid("2ABCA7D3-E71C-40A5-BD32-50C08D5D4855"), "Slurp City Info", "MrSlurp", 100, "/SlurpUI/CityInfo")
         {
             _instance = this;
+#if DEBUG
+            EnableLog = true;
+#endif
         }
 
         public override IResponseFormatter Handle(HttpListenerRequest request)
@@ -60,13 +66,17 @@ namespace CWS_MrSlurpExtensions
 
         private IResponseFormatter HandleDistrict(HttpListenerRequest request)
         {
+            Stopwatch sw = new Stopwatch();
             var districtIDs = GetDistrictsFromRequest(request);
 
             DistrictInfo globalDistrictInfo = null;
             List<DistrictInfo> districtInfoList = new List<DistrictInfo>();
-
+            LogMessages(string.Format("{0} district requested", districtIDs.Count()));
+            sw.Start();
             var buildings = GetBuildingBreakdownByDistrict();
+            LogMessages(string.Format("building breakdown took {0}", sw.Elapsed.TotalMilliseconds));
             var vehicles = GetVehicleBreakdownByDistrict();
+            LogMessages(string.Format("vehicle breakdown took {0}", sw.Elapsed.TotalMilliseconds));
 
             foreach (var districtID in districtIDs)
             {
@@ -83,6 +93,7 @@ namespace CWS_MrSlurpExtensions
                     districtInfo.TotalVehicleCount = vehicles.Where(obj => obj.Key == districtID).Sum(obj => obj.Value);
                     districtInfoList.Add(districtInfo);
                 }
+                LogMessages(string.Format("district {1} total generation time {0}", sw.Elapsed.TotalMilliseconds,districtID));
             }
 
             var simulationManager = Singleton<SimulationManager>.instance;
@@ -94,25 +105,10 @@ namespace CWS_MrSlurpExtensions
                 GlobalDistrict = globalDistrictInfo,
                 Districts = districtInfoList.ToArray(),
             };
-
-            return JsonResponse(cityInfo);
+            var response = JsonResponse(cityInfo);
+            LogMessages(string.Format("json generation time {0} ",sw.Elapsed.TotalMilliseconds));
+            return response;
         }
-
-        private class SortByHouseholds<T> : IComparer<T>
-        {
-            public int Compare(T l, T r)
-            {
-                var a = l as DistrictInfo;
-                var b = r as DistrictInfo;
-                if (a.Households.TotalCurrent > b.Households.TotalCurrent)
-                    return 1;
-                else if (a.Households.TotalCurrent < b.Households.TotalCurrent)
-                    return -1;
-                else
-                    return 0;
-            }
-        }
-	
 
         private Dictionary<int, int> GetBuildingBreakdownByDistrict()
         {
