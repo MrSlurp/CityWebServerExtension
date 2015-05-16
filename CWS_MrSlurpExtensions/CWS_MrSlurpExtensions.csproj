@@ -205,16 +205,7 @@
     <Content Include="www\assets\img\game\IconPolicyFarming.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="www\assets\img\game\IconPolicyFarmingDisabled.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="www\assets\img\game\IconPolicyFarmingPressed.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="www\assets\img\game\IconPolicyForest.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="www\assets\img\game\IconPolicyForestDisabled.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="www\assets\img\game\IconPolicyFreePublicTransport.png">
@@ -238,9 +229,6 @@
     <Content Include="www\assets\img\game\IconPolicyNoHomo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="www\assets\img\game\IconPolicyNoHomoDisabled.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="www\assets\img\game\IconPolicyNone.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -262,13 +250,7 @@
     <Content Include="www\assets\img\game\IconPolicyPetBan.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="www\assets\img\game\IconPolicyPetBanDisabled.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="www\assets\img\game\IconPolicyPowerSaving.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="www\assets\img\game\IconPolicyPowerSavingDisabled.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="www\assets\img\game\IconPolicyRecreationalUse.png">
@@ -280,22 +262,13 @@
     <Content Include="www\assets\img\game\IconPolicyRecycling.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="www\assets\img\game\IconPolicyRecyclingDisabled.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="www\assets\img\game\IconPolicySmallBusiness.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="www\assets\img\game\IconPolicySmokeDetectors.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="www\assets\img\game\IconPolicySmokeDetectorsDisabled.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="www\assets\img\game\IconPolicySmokingBan.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="www\assets\img\game\IconPolicySmokingBanDisabled.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="www\assets\img\game\IconPolicyTaxLowerComHigh.png">
@@ -330,9 +303,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="www\assets\img\game\IconPolicyWaterSaving.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="www\assets\img\game\IconPolicyWaterSavingDisabled.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="www\assets\img\game\InfoIconCrime.png">
