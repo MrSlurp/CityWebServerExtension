@@ -12,6 +12,7 @@ using ColossalFramework.Plugins;
 using CityWebServer.Extensibility.Responses;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace CWS_MrSlurpExtensions
 {
@@ -36,13 +37,20 @@ namespace CWS_MrSlurpExtensions
             {
                 //only if request is SlurpUI root or an existing www file
                 var theoricFilePath = Path.Combine(GetModRoot() + Path.DirectorySeparatorChar + "www", cleanUrlFilePath(request.Url.AbsolutePath));
-                //this.OnLogMessage(string.Format("theoricFilePath={0} / Url.AbsolutePath={1} ({2})", theoricFilePath, request.Url.AbsolutePath, GetModRoot() + Path.DirectorySeparatorChar + "www"));
-                if (request.Url.AbsolutePath.ToLower() == "/slurpui"
-                    ||
-                    File.Exists(theoricFilePath))
+                this.OnLogMessage(string.Format("theoricFilePath={0} / Url.AbsolutePath={1} ({2})", theoricFilePath, request.Url.AbsolutePath, GetModRoot() + Path.DirectorySeparatorChar + "www"));
+                if (request.Url.AbsolutePath.ToLower() == "/slurpui")
                 {
-                    //this.OnLogMessage("Take the deal");
+                    OnLogMessage(string.Format("Take the deal for {0}", request.Url.AbsolutePath));
                     return true;
+                }
+                else if (File.Exists(theoricFilePath))
+                {
+                    OnLogMessage(string.Format("Take the deal for {0}", request.Url.AbsolutePath));
+                    return true;
+                }
+                else
+                {
+                    OnLogMessage(string.Format("not for me or file does not exist {0}", theoricFilePath));
                 }
                 return false;
             }
@@ -51,7 +59,7 @@ namespace CWS_MrSlurpExtensions
 
         private string cleanUrlFilePath(string urlAbsPath)
         {
-            var tmpUrl = urlAbsPath.ToLower().Replace("/slurpui", "").Replace('/', Path.DirectorySeparatorChar);
+            var tmpUrl = Regex.Replace(urlAbsPath, "/slurpui", "", RegexOptions.IgnoreCase).Replace('/', Path.DirectorySeparatorChar);
             return tmpUrl.Length > 0 && tmpUrl[0] == Path.DirectorySeparatorChar ? tmpUrl.Remove(0, 1) : tmpUrl;
         }
 

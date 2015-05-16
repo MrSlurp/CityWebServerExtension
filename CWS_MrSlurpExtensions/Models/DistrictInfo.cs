@@ -286,17 +286,17 @@ namespace CWS_MrSlurpExtensions
                 AverageLandValue = district.GetLandValue(),
                 Pollution = pollution,
                 WeeklyTouristVisits = (int)district.m_tourist1Data.m_averageCount + (int)district.m_tourist2Data.m_averageCount + (int)district.m_tourist3Data.m_averageCount,
-                Policies = GetPolicies().ToArray(),
+                Policies = GetPolicies(districtID).ToArray(),
 
             };
             if (districtID != 0)
             {
-                CityInfoRequestHandler.LogMessages("Building vehicles for", districtID.ToString());
+                //CityInfoRequestHandler.LogMessages("Building vehicles for", districtID.ToString());
                 model.Vehicles = new VehiclesInfo(districtID);
             }
             else
             {
-                CityInfoRequestHandler.LogMessages("Building vehicles for city");
+                //CityInfoRequestHandler.LogMessages("Building vehicles for city");
                 model.Vehicles = new VehiclesInfo();
             }
             return model;
@@ -310,7 +310,7 @@ namespace CWS_MrSlurpExtensions
             return district;
         }
 
-        private static IEnumerable<PolicyInfo> GetPolicies()
+        private static IEnumerable<PolicyInfo> GetPolicies(int distictId)
         {
             var policies = EnumHelper.GetValues<DistrictPolicies.Policies>();
             var districtManager = Singleton<DistrictManager>.instance;
@@ -318,7 +318,8 @@ namespace CWS_MrSlurpExtensions
             foreach (var policy in policies)
             {
                 String policyName = Enum.GetName(typeof(DistrictPolicies.Policies), policy);
-                Boolean isEnabled = districtManager.IsCityPolicySet(DistrictPolicies.Policies.AlligatorBan);
+                District dist = districtManager.m_districts.m_buffer[distictId];
+                Boolean isEnabled = dist.IsPolicySet(policy);
                 yield return new PolicyInfo
                 {
                     Name = policyName,

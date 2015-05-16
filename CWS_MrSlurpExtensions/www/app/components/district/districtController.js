@@ -137,7 +137,6 @@ define([
             return false;
         }
 
-
         // in case of district view
         cityInfoService.registerSubscriber(function () {
             update();

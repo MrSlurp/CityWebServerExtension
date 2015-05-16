@@ -5,7 +5,7 @@ define([
 ], function (module) {
     module.factory('cityInfoService', function ($http, $interval) {
         console.log("cityInfoService ready for duty");
-        var _LocalTest = false;
+        var _LocalTest = true;
         var _fileSwitch = false;
         var _localData = {};
         var _subscribers = [];
@@ -29,6 +29,7 @@ define([
             _internalGetCityData();
         }.bind(this), 3000);
         _internalGetCityData();
+
         return {
             getCityData: function () {
                 return _localData;

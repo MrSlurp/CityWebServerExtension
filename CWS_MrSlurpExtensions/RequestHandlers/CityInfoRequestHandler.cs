@@ -67,30 +67,37 @@ namespace CWS_MrSlurpExtensions
         private IResponseFormatter HandleDistrict(HttpListenerRequest request)
         {
             Stopwatch sw = new Stopwatch();
+            Stopwatch sw2 = new Stopwatch();
+            sw2.Start();
             var districtIDs = GetDistrictsFromRequest(request);
 
             DistrictInfo globalDistrictInfo = null;
             List<DistrictInfo> districtInfoList = new List<DistrictInfo>();
             LogMessages(string.Format("{0} district requested", districtIDs.Count()));
+            sw.Reset();
             sw.Start();
             var buildings = GetBuildingBreakdownByDistrict();
             LogMessages(string.Format("building breakdown took {0}", sw.Elapsed.TotalMilliseconds));
+            sw.Reset();
+            sw.Start();
             var vehicles = GetVehicleBreakdownByDistrict();
             LogMessages(string.Format("vehicle breakdown took {0}", sw.Elapsed.TotalMilliseconds));
 
             foreach (var districtID in districtIDs)
             {
+                sw.Reset();
+                sw.Start();
                 var districtInfo = DistrictInfo.GetDistrictInfo(districtID);
                 if (districtID == 0)
                 {
-                    districtInfo.TotalBuildingCount = buildings.Sum(obj => obj.Value);
-                    districtInfo.TotalVehicleCount = vehicles.Sum(obj => obj.Value);
+                    //districtInfo.TotalBuildingCount = buildings.Sum(obj => obj.Value);
+                    //districtInfo.TotalVehicleCount = vehicles.Sum(obj => obj.Value);
                     globalDistrictInfo = districtInfo;
                 }
                 else
                 {
-                    districtInfo.TotalBuildingCount = buildings.Where(obj => obj.Key == districtID).Sum(obj => obj.Value);
-                    districtInfo.TotalVehicleCount = vehicles.Where(obj => obj.Key == districtID).Sum(obj => obj.Value);
+                    //districtInfo.TotalBuildingCount = buildings.Where(obj => obj.Key == districtID).Sum(obj => obj.Value);
+                    //districtInfo.TotalVehicleCount = vehicles.Where(obj => obj.Key == districtID).Sum(obj => obj.Value);
                     districtInfoList.Add(districtInfo);
                 }
                 LogMessages(string.Format("district {1} total generation time {0}", sw.Elapsed.TotalMilliseconds,districtID));
@@ -105,8 +112,12 @@ namespace CWS_MrSlurpExtensions
                 GlobalDistrict = globalDistrictInfo,
                 Districts = districtInfoList.ToArray(),
             };
+            sw.Reset();
+            sw.Start();
             var response = JsonResponse(cityInfo);
-            LogMessages(string.Format("json generation time {0} ",sw.Elapsed.TotalMilliseconds));
+            sw.Stop();
+            sw2.Stop();
+            LogMessages(string.Format("json generation time {0} (total data generation = {1})", sw.Elapsed.TotalMilliseconds, sw2.Elapsed.TotalMilliseconds));
             return response;
         }
 

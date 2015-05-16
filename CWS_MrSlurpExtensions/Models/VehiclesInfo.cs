@@ -184,11 +184,13 @@ namespace CWS_MrSlurpExtensions
             CityServicesVehicles[serviceName]["exports"] = (int)CityServicesVehicles[serviceName]["exports"] + (exporting ? 1 : 0);
             CityServicesVehicles[serviceName]["intra"] = (int)CityServicesVehicles[serviceName]["intra"] + ((!exporting && !importing) ? 1 : 0);
             CityServicesVehicles[serviceName]["total"] = (int)CityServicesVehicles[serviceName]["total"] + 1;
-            CityServicesVehicles[serviceName]["srcDistricts"] = 
+            //CityServicesVehicles[serviceName]["srcDistricts"] = 
         }
 
         public VehiclesInfo(int? districId = null)
         {
+            System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+            sw.Start();
             try
             {
                 VehicleManager vm = Singleton<VehicleManager>.instance;
@@ -200,7 +202,7 @@ namespace CWS_MrSlurpExtensions
                     CityInfoRequestHandler.LogMessages("Car List Empty!");
                     return;
                 }
-                CityInfoRequestHandler.LogMessages(string.Format("Car List with {0} items", Cars.Count()));
+                //CityInfoRequestHandler.LogMessages(string.Format("Car List with {0} items", Cars.Count()));
                 foreach (var myv in Cars)
                 {
                     UpdateGeneral(myv);
@@ -220,7 +222,7 @@ namespace CWS_MrSlurpExtensions
                             case ItemClass.Service.PublicTransport:
                                 if (myv.Info.m_class.m_subService == ItemClass.SubService.PublicTransportBus)
                                 {
-                                    CityServicesVehicles["PublicTransport"]["bus"]++;
+                                    (CityServicesVehicles["PublicTransport"]["bus"]) = (int)CityServicesVehicles["PublicTransport"]["bus"] +1;
                                 }
                                 break;
                             #endregion
@@ -242,6 +244,7 @@ namespace CWS_MrSlurpExtensions
             {
                 CityInfoRequestHandler.LogMessages("Error while building vehicles info", ex.Message, ex.StackTrace);
             }
+            CityInfoRequestHandler.LogMessages(string.Format("District vehicles info generation time {0} ", sw.Elapsed.TotalMilliseconds));
         }
         #endregion
     }

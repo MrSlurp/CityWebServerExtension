@@ -180,5 +180,25 @@ define([
             restrict: 'E',
             templateUrl: './app/shared/servicePanel/panelConsoDistribConsoView.html'
         }
+    })
+    .directive('panelPolicies', function () {
+        return {
+            scope: {
+                policies: "=",
+            },
+            controller: [
+                '$scope',
+                '$element',
+                '$attrs',
+                function ($scope, $element, $attrs) {
+                    $scope.getPolicyIconFromName = function (policyName) {
+                        return "IconPolicy" + policyName + ".png";
+                    }
+                }
+            ],
+            transclude: true,
+            restrict: 'E',
+            templateUrl: './app/shared/servicePanel/panelPolicies.html'
+        }
     });
 });

@@ -76,146 +76,414 @@
     <Compile Include="RequestHandlers\TransportRequestHandler.cs" />
     <Compile Include="UserModInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="www\assets\js\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="SelfNotes.txt" />
-    <Content Include="www\app\components\city\cityController.js" />
-    <Content Include="www\app\components\city\cityView.html" />
-    <Content Include="www\app\components\city\cityVitalsView.html" />
-    <Content Include="www\app\components\city\cityFullView.html" />
-    <Content Include="www\app\components\city\index.js" />
-    <Content Include="www\app\components\city\module.js" />
-    <Content Include="www\app\components\dataServices\cityInfoService.js" />
-    <Content Include="www\app\components\district\districtFullView.html" />
-    <Content Include="www\app\components\district\districtController.js" />
-    <Content Include="www\app\components\district\districtView.html" />
-    <Content Include="www\app\components\district\index.js" />
-    <Content Include="www\app\components\district\module.js" />
-    <Content Include="www\app\components\transport\transportService.js" />
-    <Content Include="www\app\components\transport\transportController.js" />
-    <Content Include="www\app\components\transport\transportView.html" />
-    <Content Include="www\app\shared\about\about.html" />
-    <Content Include="www\app\shared\header\headerView.html" />
-    <Content Include="www\app\shared\serviceBargraph\index.js" />
-    <Content Include="www\app\shared\serviceBargraph\serviceBargraphModule.js" />
-    <Content Include="www\app\shared\serviceBargraph\serviceBargraphView.html" />
-    <Content Include="www\app\shared\servicePanel\panelJobView.html" />
-    <Content Include="www\app\shared\servicePanel\panel2ConsoView.html" />
-    <Content Include="www\app\shared\servicePanel\panelConsoDistribConsoView.html" />
-    <Content Include="www\app\shared\servicePanel\index.js" />
-    <Content Include="www\app\shared\servicePanel\servicePanelModule.js" />
-    <Content Include="www\app\shared\servicePanel\panelConsoDistribView.html" />
-    <Content Include="www\app\shared\servicePieChart\servicePieChartUsage.html" />
-    <Content Include="www\app\shared\servicePieChart\index.js" />
-    <Content Include="www\app\shared\servicePieChart\consumptionIndicator.html" />
-    <Content Include="www\app\shared\servicePieChart\consumptionIndicator.js" />
-    <Content Include="www\app\shared\servicePieChart\serviceImportExportPieChartView.html" />
-    <Content Include="www\app\shared\servicePieChart\servicePieChartModule.js" />
-    <Content Include="www\app\shared\servicePieChart\servicePieChartView.html" />
+    <Content Include="www\app\components\city\cityController.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\components\city\cityView.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\components\city\cityVitalsView.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\components\city\cityFullView.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\components\city\index.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\components\city\module.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\components\dataServices\cityInfoService.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\components\district\districtFullView.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\components\district\districtController.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\components\district\districtView.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\components\district\index.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\components\district\module.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\components\transport\transportService.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\components\transport\transportController.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\components\transport\transportView.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\shared\about\about.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\shared\header\headerView.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\shared\serviceBargraph\index.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\shared\serviceBargraph\serviceBargraphModule.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\shared\serviceBargraph\serviceBargraphView.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\shared\servicePanel\panelPolicies.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\shared\servicePanel\panelJobView.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\shared\servicePanel\panel2ConsoView.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\shared\servicePanel\panelConsoDistribConsoView.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\shared\servicePanel\index.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\shared\servicePanel\servicePanelModule.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\shared\servicePanel\panelConsoDistribView.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\shared\servicePieChart\servicePieChartUsage.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\shared\servicePieChart\index.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\shared\servicePieChart\consumptionIndicator.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\shared\servicePieChart\consumptionIndicator.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\shared\servicePieChart\serviceImportExportPieChartView.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\shared\servicePieChart\servicePieChartModule.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app\shared\servicePieChart\servicePieChartView.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="www\assets\css\bootstrap.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="www\assets\css\cityWebServer.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="www\assets\css\nv.d3.css" />
-    <Content Include="www\assets\img\game\IconPolicyAlligatorBan.png" />
-    <Content Include="www\assets\img\game\IconPolicyAllowWeapons.png" />
-    <Content Include="www\assets\img\game\IconPolicyBigBusiness.png" />
-    <Content Include="www\assets\img\game\IconPolicyEducationBoost.png" />
-    <Content Include="www\assets\img\game\IconPolicyFarming.png" />
-    <Content Include="www\assets\img\game\IconPolicyFarmingDisabled.png" />
-    <Content Include="www\assets\img\game\IconPolicyFarmingPressed.png" />
-    <Content Include="www\assets\img\game\IconPolicyForest.png" />
-    <Content Include="www\assets\img\game\IconPolicyForestDisabled.png" />
-    <Content Include="www\assets\img\game\IconPolicyFreePublicTransport.png" />
-    <Content Include="www\assets\img\game\IconPolicyFreeTransport.png" />
-    <Content Include="www\assets\img\game\IconPolicyHeavyTrafficBan.png" />
-    <Content Include="www\assets\img\game\IconPolicyHighriseBan.png" />
-    <Content Include="www\assets\img\game\IconPolicyHighTechHousing.png" />
-    <Content Include="www\assets\img\game\IconPolicyIndustrySpace.png" />
-    <Content Include="www\assets\img\game\IconPolicyNoHomo.png" />
-    <Content Include="www\assets\img\game\IconPolicyNoHomoDisabled.png" />
-    <Content Include="www\assets\img\game\IconPolicyNone.png" />
-    <Content Include="www\assets\img\game\IconPolicyOil.png" />
-    <Content Include="www\assets\img\game\IconPolicyOilDisabled.png" />
-    <Content Include="www\assets\img\game\IconPolicyOre.png" />
-    <Content Include="www\assets\img\game\IconPolicyOreDisabled.png" />
-    <Content Include="www\assets\img\game\IconPolicyParksandRecreation.png" />
-    <Content Include="www\assets\img\game\IconPolicyPetBan.png" />
-    <Content Include="www\assets\img\game\IconPolicyPetBanDisabled.png" />
-    <Content Include="www\assets\img\game\IconPolicyPowerSaving.png" />
-    <Content Include="www\assets\img\game\IconPolicyPowerSavingDisabled.png" />
-    <Content Include="www\assets\img\game\IconPolicyRecreationalUse.png" />
-    <Content Include="www\assets\img\game\IconPolicyRecreationBoost.png" />
-    <Content Include="www\assets\img\game\IconPolicyRecycling.png" />
-    <Content Include="www\assets\img\game\IconPolicyRecyclingDisabled.png" />
-    <Content Include="www\assets\img\game\IconPolicySmallBusiness.png" />
-    <Content Include="www\assets\img\game\IconPolicySmokeDetectors.png" />
-    <Content Include="www\assets\img\game\IconPolicySmokeDetectorsDisabled.png" />
-    <Content Include="www\assets\img\game\IconPolicySmokingBan.png" />
-    <Content Include="www\assets\img\game\IconPolicySmokingBanDisabled.png" />
-    <Content Include="www\assets\img\game\IconPolicyTaxLowerComHigh.png" />
-    <Content Include="www\assets\img\game\IconPolicyTaxLowerComLow.png" />
-    <Content Include="www\assets\img\game\IconPolicyTaxLowerOffice.png" />
-    <Content Include="www\assets\img\game\IconPolicyTaxLowerResHigh.png" />
-    <Content Include="www\assets\img\game\IconPolicyTaxLowerResLow.png" />
-    <Content Include="www\assets\img\game\IconPolicyTaxRaiseComHigh.png" />
-    <Content Include="www\assets\img\game\IconPolicyTaxRaiseIndustrial.png" />
-    <Content Include="www\assets\img\game\IconPolicyTaxRaiseOffice.png" />
-    <Content Include="www\assets\img\game\IconPolicyTaxRaiseResHigh.png" />
-    <Content Include="www\assets\img\game\IconPolicyTaxRaiseResLow.png" />
-    <Content Include="www\assets\img\game\IconPolicyWaterSaving.png" />
-    <Content Include="www\assets\img\game\IconPolicyWaterSavingDisabled.png" />
-    <Content Include="www\assets\img\game\InfoIconCrime.png" />
-    <Content Include="www\assets\img\game\InfoIconFireSafety.png" />
-    <Content Include="www\assets\img\game\InfoIconGarbage.png" />
-    <Content Include="www\assets\img\game\InfoIconHappiness.png" />
-    <Content Include="www\assets\img\game\InfoIconHealth.png" />
-    <Content Include="www\assets\img\game\InfoIconLandValue.png" />
-    <Content Include="www\assets\img\game\InfoIconLevel.png" />
-    <Content Include="www\assets\img\game\InfoIconNoisePollution.png" />
-    <Content Include="www\assets\img\game\InfoIconOutsideConnections.png" />
-    <Content Include="www\assets\img\game\InfoIconPollution.png" />
-    <Content Include="www\assets\img\game\InfoIconPopulation.png" />
-    <Content Include="www\assets\img\game\InfoIconPublicTransport.png" />
-    <Content Include="www\assets\img\game\InfoIconTrafficCongestion.png" />
-    <Content Include="www\assets\img\game\InfoIconWater.png" />
-    <Content Include="www\assets\libs\angularjs-dropdown-multiselect.min.js" />
-    <Content Include="www\assets\libs\angularjs-nvd3-directives.js" />
-    <Content Include="www\assets\libs\angularjs-nvd3-directives.min.js" />
-    <Content Include="www\assets\libs\d3.js" />
-    <Content Include="www\assets\libs\lodash.js" />
-    <Content Include="www\assets\libs\moment.js" />
-    <Content Include="www\assets\libs\nv.d3.js" />
-    <Content Include="www\assets\libs\ui-bootstrap-tpls.js" />
-    <Content Include="www\citiesApp.js" />
-    <Content Include="www\main.js" />
-    <Content Include="www\assets\libs\angular-route.js" />
-    <Content Include="www\assets\libs\angular-route.min.js" />
-    <Content Include="www\assets\libs\angular.js" />
-    <Content Include="www\assets\libs\angular.min.js" />
+    <Content Include="www\assets\css\nv.d3.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyAlligatorBan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyAllowWeapons.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyBigBusiness.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyEducationBoost.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyFarming.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyFarmingDisabled.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyFarmingPressed.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyForest.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyForestDisabled.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyFreePublicTransport.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyFreeTransport.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyHeavyTrafficBan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyHighriseBan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyHighTechHousing.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyIndustrySpace.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyNoHomo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyNoHomoDisabled.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyNone.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyOil.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyOilDisabled.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyOre.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyOreDisabled.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyParksandRecreation.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyPetBan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyPetBanDisabled.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyPowerSaving.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyPowerSavingDisabled.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyRecreationalUse.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyRecreationBoost.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyRecycling.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyRecyclingDisabled.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicySmallBusiness.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicySmokeDetectors.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicySmokeDetectorsDisabled.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicySmokingBan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicySmokingBanDisabled.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyTaxLowerComHigh.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyTaxLowerComLow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyTaxLowerOffice.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyTaxLowerResHigh.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyTaxLowerResLow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyTaxRaiseComHigh.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyTaxRaiseComLow.png" />
+    <Content Include="www\assets\img\game\IconPolicyTaxRaiseIndustrial.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyTaxRaiseOffice.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyTaxRaiseResHigh.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyTaxRaiseResLow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyWaterSaving.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\IconPolicyWaterSavingDisabled.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\InfoIconCrime.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\InfoIconFireSafety.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\InfoIconGarbage.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\InfoIconHappiness.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\InfoIconHealth.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\InfoIconIncineration.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\InfoIconLandValue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\InfoIconLevel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\InfoIconNoisePollution.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\InfoIconOutsideConnections.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\InfoIconPollution.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\InfoIconPopulation.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\InfoIconPublicTransport.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\InfoIconTrafficCongestion.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\InfoIconWater.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\ToolbarIconCemetery.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\ToolbarIconCremation.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\ToolbarIconEducation.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\ToolbarIconEducation1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\ToolbarIconEducation2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\ToolbarIconEducation3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\ToolbarIconElectricity.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\ToolbarIconHealthcare.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\ToolbarIconSewage.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\ToolbarIconWater.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\img\game\ToolbarIconZoning.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\libs\angularjs-dropdown-multiselect.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\libs\angularjs-nvd3-directives.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\libs\angularjs-nvd3-directives.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\libs\d3.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\libs\lodash.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\libs\moment.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\libs\nv.d3.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\libs\ui-bootstrap-tpls.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\citiesApp.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\main.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\libs\angular-route.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\libs\angular-route.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\libs\angular.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\assets\libs\angular.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="www\assets\libs\bootstrap.min.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="www\assets\libs\jquery.min.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="www\assets\libs\require.js" />
+    <Content Include="www\assets\libs\require.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="www\index.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="www\assets\fonts\glyphicons-halflings-regular.eot" />
-    <None Include="www\assets\fonts\glyphicons-halflings-regular.svg" />
-    <None Include="www\assets\fonts\glyphicons-halflings-regular.ttf" />
-    <None Include="www\assets\fonts\glyphicons-halflings-regular.woff" />
-    <None Include="www\assets\fonts\glyphicons-halflings-regular.woff2" />
-    <None Include="www\SlurpUI\CityInfo2" />
-    <Content Include="www\transport.html">
+    <None Include="www\assets\fonts\glyphicons-halflings-regular.eot">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </None>
+    <None Include="www\assets\fonts\glyphicons-halflings-regular.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="www\assets\fonts\glyphicons-halflings-regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="www\assets\fonts\glyphicons-halflings-regular.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="www\assets\fonts\glyphicons-halflings-regular.woff2">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="www\SlurpUI\CityInfo2" />
+    <Content Include="www\transport.html" />
   </ItemGroup>
   <ItemGroup>
     <None Include="www\SlurpUI\CityInfo" />
