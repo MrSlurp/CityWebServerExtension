@@ -37,41 +37,7 @@ namespace CWS_MrSlurpExtensions
             get { return cityMaintenanceVehicle; }
         }
 
-        Dictionary<string, Dictionary<string, object>> cityServicesVehicles = new Dictionary<string, Dictionary<string, object>>{
-                                                    {"Commercial",new Dictionary<string, object>{
-                                                        {"imports",0},
-                                                        {"exports",0},
-                                                        {"intra",0},
-                                                        {"total",0},
-                                                        {"srcDistricts", null},
-                                                        {"dstDistricts", null}
-                                                    }},
-                                                    {"Industrial",new Dictionary<string, object>{
-                                                        {"imports",0},
-                                                        {"exports",0},
-                                                        {"intra",0},
-                                                        {"total",0},
-                                                        {"srcDistricts", null},
-                                                        {"dstDistricts", null}
-                                                    }},
-                                                    {"Office",new Dictionary<string, object>{
-                                                        {"imports",0},
-                                                        {"exports",0},
-                                                        {"intra",0},
-                                                        {"total",0},
-                                                        {"srcDistricts", null},
-                                                        {"dstDistricts", null}
-                                                    }},
-                                                    {"PublicTransport",new Dictionary<string, object>{
-                                                        {"bus",0},
-                                                        {"metro",0},
-                                                        {"train",0},
-                                                        {"ship",0},
-                                                        {"plane",0},
-                                                        {"srcDistricts", null},
-                                                        {"dstDistricts", null}
-                                                    }},
-                                                };
+        Dictionary<string, Dictionary<string, object>> cityServicesVehicles = new Dictionary<string, Dictionary<string, object>>();
 
         public Dictionary<string, Dictionary<string, object>> CityServicesVehicles
         {
@@ -178,13 +144,85 @@ namespace CWS_MrSlurpExtensions
 
         private void UpdateService(Vehicle vehicle, string serviceName, uint transfertSize)
         {
+            if (!CityServicesVehicles.Keys.Contains(serviceName))
+            {
+                CityServicesVehicles.Add(serviceName, new Dictionary<string, object>{
+                                                        {"imports",0},
+                                                        {"exports",0},
+                                                        {"intra",0},
+                                                        {"total",0},
+                                                        {"srcDistricts", new Dictionary<string, int>()},
+                                                        {"dstDistricts", new Dictionary<string, int>()},
+                                                        {"importReason", new Dictionary<string, int>()},
+                                                        {"exportReason", new Dictionary<string, int>()},
+                                                        {"otherReason", new Dictionary<string, int>()}}
+                                        );
+
+            }
             bool importing = (vehicle.m_flags & Vehicle.Flags.Importing) == Vehicle.Flags.Importing;
             bool exporting = (vehicle.m_flags & Vehicle.Flags.Exporting) == Vehicle.Flags.Exporting;
             CityServicesVehicles[serviceName]["imports"] = (int)CityServicesVehicles[serviceName]["imports"] + (importing? 1:0);
             CityServicesVehicles[serviceName]["exports"] = (int)CityServicesVehicles[serviceName]["exports"] + (exporting ? 1 : 0);
             CityServicesVehicles[serviceName]["intra"] = (int)CityServicesVehicles[serviceName]["intra"] + ((!exporting && !importing) ? 1 : 0);
             CityServicesVehicles[serviceName]["total"] = (int)CityServicesVehicles[serviceName]["total"] + 1;
-            //CityServicesVehicles[serviceName]["srcDistricts"] = 
+            var srcName = getBuildingDistrictName(vehicle.m_sourceBuilding);
+            var dstName = getBuildingDistrictName(vehicle.m_targetBuilding);
+            Dictionary<string, int> srcDistrict = (Dictionary<string, int>)CityServicesVehicles[serviceName]["srcDistricts"];
+            Dictionary<string, int> dstDistrict = (Dictionary<string, int>)CityServicesVehicles[serviceName]["dstDistricts"];
+            if (!srcDistrict.Keys.Contains(srcName))
+                srcDistrict.Add(srcName, 1);
+            else
+                srcDistrict[srcName]++;
+
+            if (!dstDistrict.Keys.Contains(dstName))
+                dstDistrict.Add(dstName, 1);
+            else
+                dstDistrict[dstName]++;
+
+            var reason = (TransferManager.TransferReason)vehicle.m_transferType;
+            string strReason = reason.ToString();
+            if (reason == TransferManager.TransferReason.None)
+            {
+                VehicleAI vehicleAi = ((VehicleAI)vehicle.Info.GetAI());
+                Vehicle dummy = vehicle;
+                InstanceID target = vehicleAi.GetTargetID(vehicle.Info.m_instanceID.Vehicle, ref dummy);
+                var _buildingManager = Singleton<BuildingManager>.instance;
+
+                strReason = _buildingManager.m_buildings.m_buffer[target.Building].Info.GetService().ToString();
+
+            }
+            if (importing)
+            {
+                Dictionary<string, int> importReas = (Dictionary<string, int>)CityServicesVehicles[serviceName]["importReason"];
+                addOrIncrement(ref importReas, strReason);
+            }
+            else if (exporting)
+            {
+                Dictionary<string, int> exportReas = (Dictionary<string, int>)CityServicesVehicles[serviceName]["exportReason"];
+                addOrIncrement(ref exportReas, strReason);
+            }
+            else
+            {
+                Dictionary<string, int> otherReas = (Dictionary<string, int>)CityServicesVehicles[serviceName]["otherReason"];
+                addOrIncrement(ref otherReas, strReason);
+            }
+        }
+
+        private void addOrIncrement(ref Dictionary<string, int> src, string name)
+        {
+            if (!src.Keys.Contains(name))
+                src.Add(name, 1);
+            else
+                src[name]++;
+        }
+
+        private string getBuildingDistrictName(int buildingId)
+        {
+            BuildingManager bm = Singleton<BuildingManager>.instance;
+            Building building = bm.m_buildings.m_buffer[buildingId];
+            bool buildingisplayer = building.m_flags.IsFlagSet(Building.Flags.Untouchable) ? false : true;
+            var buildingDistrictId = (int)districtManager.GetDistrict(building.m_position);
+            return buildingisplayer? (buildingDistrictId == 0 ? "City" : districtManager.GetDistrictName(buildingDistrictId)) : "Outside";
         }
 
         public VehiclesInfo(int? districId = null)
@@ -216,6 +254,8 @@ namespace CWS_MrSlurpExtensions
                     {
                         bool importing = (myv.m_flags & Vehicle.Flags.Importing) == Vehicle.Flags.Importing;
                         bool exporting = (myv.m_flags & Vehicle.Flags.Exporting) == Vehicle.Flags.Exporting;
+                        UpdateService(myv, myv.Info.m_class.m_service.ToString(), transfersize);
+                        /*
                         switch (myv.Info.m_class.m_service)
                         {
                             #region public transports
@@ -226,9 +266,15 @@ namespace CWS_MrSlurpExtensions
                                 }
                                 break;
                             #endregion
+                                
+                            case ItemClass.Service.:
+                                UpdateService(myv, "Citizen", transfersize);
+                                break;
+                                
                             case ItemClass.Service.Commercial:
                                 UpdateService(myv, "Commercial", transfersize);
                                 break;
+                                
                             case ItemClass.Service.Office:
                                 UpdateService(myv, "Office", transfersize);
                                 break;
@@ -236,7 +282,7 @@ namespace CWS_MrSlurpExtensions
                                 UpdateService(myv, "Industrial", transfersize);
                                 break;
 
-                        }
+                        }*/
                     }
                 }
             }

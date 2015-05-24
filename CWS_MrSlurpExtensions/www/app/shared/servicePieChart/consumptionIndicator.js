@@ -89,8 +89,13 @@ var indicator = angular.module('indicator', []);
                     var value = 0;
                     if ($scope.total != undefined
                         && $scope.actual != undefined
-                        && $scope.total != 0 )
-                        value = $scope.total != 0 ? ($scope.actual / $scope.total) : 0
+                        && $scope.total != 0) {
+                        value = $scope.total != 0 ? (($scope.actual ? $scope.actual : 0) / $scope.total) : 0;
+                        //console.log("data = " + value + "(" + $scope.total + " , " + JSON.stringify($scope.actual) + ")");
+                    }
+                    else {
+                        //console.log("invalid data");
+                    }
                     
                     if ($attrs.centerBgColor != undefined)
                         $scope.centerColor = $scope.centerBgColor()(value)
@@ -194,7 +199,7 @@ var indicator = angular.module('indicator', []);
                         arcObject = scope.buildArc(),
                         outerArc = scope.getArcInfo(1.3, scope.actual, scope.radius, 0.1),
                         end = outerArc.endAngle;
-
+                        //console.log(scope.descriptionTip + "=>" + scope.actual);
                         outerArc.endAngle = previousAngle;
                         arc
                             .datum(outerArc)

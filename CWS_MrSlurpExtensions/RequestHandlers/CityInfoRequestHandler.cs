@@ -74,15 +74,16 @@ namespace CWS_MrSlurpExtensions
             DistrictInfo globalDistrictInfo = null;
             List<DistrictInfo> districtInfoList = new List<DistrictInfo>();
             LogMessages(string.Format("{0} district requested", districtIDs.Count()));
-            sw.Reset();
-            sw.Start();
+            //sw.Reset();
+            //sw.Start();
+            /*
             var buildings = GetBuildingBreakdownByDistrict();
             LogMessages(string.Format("building breakdown took {0}", sw.Elapsed.TotalMilliseconds));
             sw.Reset();
             sw.Start();
             var vehicles = GetVehicleBreakdownByDistrict();
             LogMessages(string.Format("vehicle breakdown took {0}", sw.Elapsed.TotalMilliseconds));
-
+            */
             foreach (var districtID in districtIDs)
             {
                 sw.Reset();
@@ -121,6 +122,7 @@ namespace CWS_MrSlurpExtensions
             return response;
         }
 
+        /*
         private Dictionary<int, int> GetBuildingBreakdownByDistrict()
         {
             var districtManager = Singleton<DistrictManager>.instance;
@@ -141,8 +143,9 @@ namespace CWS_MrSlurpExtensions
                 }
             }
             return districtBuildings;
-        }
+        }*/
 
+        /*
         private Dictionary<int, int> GetVehicleBreakdownByDistrict()
         {
             var districtManager = Singleton<DistrictManager>.instance;
@@ -165,7 +168,7 @@ namespace CWS_MrSlurpExtensions
                 }
             }
             return districtVehicles;
-        }
+        }*/
 
         private IEnumerable<int> GetDistrictsFromRequest(HttpListenerRequest request)
         {

@@ -1,6 +1,16 @@
-﻿<div 
-    total="productionData.TotalCurrent"
-    actual="consumptionData.TotalCurrent" 
+﻿<!--
+<div 
+    total="productionData.TotalCurrent ? productionData.TotalCurrent: productionData"
+    actual="consumptionData.TotalCurrent ? consumptionData.TotalCurrent : consumptionData" 
+    indicator-widget
+    outer-color="colorFunction()"
+    description-tip="{{description}}"
+    >
+</div>
+-->
+<div 
+    total="productionData"
+    actual="consumptionData" 
     indicator-widget
     outer-color="colorFunction()"
     description-tip="{{description}}"

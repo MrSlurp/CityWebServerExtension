@@ -4,9 +4,9 @@
             <!-- elec -->
             <div class="col-sm-6">
                 <panel-conso-distrib
-                    production-service="CityData.GlobalDistrict.Productions.Electricity"
-                    consumption-service="CityData.GlobalDistrict.Consumptions.Electricity"
-                    distribution-service="CityData.GlobalDistrict.Consumptions.Electricity"
+                    production-service="CityData.GlobalDistrict.Productions.Electricity.TotalCurrent"
+                    consumption-service="CityData.GlobalDistrict.Consumptions.Electricity.TotalCurrent"
+                    distribution-service="CityData.GlobalDistrict.Consumptions.Electricity.TotalCurrent"
                     service-icon="ToolbarIconElectricity.png"
                     distrib-icon="ToolbarIconZoning.png"
                     panel-title="Electricity"
@@ -19,11 +19,11 @@
             <!-- Water -->
             <div class="col-sm-9">
                 <panel-conso-distrib-conso
-                    production-service-a="CityData.GlobalDistrict.Productions.Water"
-                    consumption-service-a="CityData.GlobalDistrict.Consumptions.Water"
-                    production-service-b="CityData.GlobalDistrict.Productions.Sewage"
-                    consumption-service-b="CityData.GlobalDistrict.Consumptions.Sewage"
-                    distribution-service="CityData.GlobalDistrict.Consumptions.Water"
+                    production-service-a="CityData.GlobalDistrict.Productions.Water.TotalCurrent"
+                    consumption-service-a="CityData.GlobalDistrict.Consumptions.Water.TotalCurrent"
+                    production-service-b="CityData.GlobalDistrict.Productions.Sewage.TotalCurrent"
+                    consumption-service-b="CityData.GlobalDistrict.Consumptions.Sewage.TotalCurrent"
+                    distribution-service="CityData.GlobalDistrict.Consumptions.Water.TotalCurrent"
                     description-service-a="City water capacity usage"
                     description-service-b="City sewage capacity usage"
                     distribution-description="City water consumption distribution by building type"
@@ -39,11 +39,11 @@
             <!-- garbage -->
             <div class="col-sm-9">
                 <panel-conso-distrib-conso
-                    production-service-a="CityData.GlobalDistrict.Productions.GarbageA"
-                    consumption-service-a="CityData.GlobalDistrict.Productions.GarbageC"
-                    production-service-b="CityData.GlobalDistrict.Productions.Incineration"
-                    consumption-service-b="CityData.GlobalDistrict.Consumptions.Garbage"
-                    distribution-service="CityData.GlobalDistrict.Consumptions.Garbage"
+                    production-service-a="CityData.GlobalDistrict.Productions.GarbageA.TotalCurrent"
+                    consumption-service-a="CityData.GlobalDistrict.Productions.GarbageC.TotalCurrent"
+                    production-service-b="CityData.GlobalDistrict.Productions.Incineration.TotalCurrent"
+                    consumption-service-b="CityData.GlobalDistrict.Consumptions.Garbage.TotalCurrent"
+                    distribution-service="CityData.GlobalDistrict.Consumptions.Garbage.TotalCurrent"
                     description-service-a="City landfills usage"
                     description-service-b="City incineration capacity usage"
                     distribution-description="City garbage production distribution by building type"
@@ -67,8 +67,8 @@
             <div class="row">
                 <div class ="col-xs-6" >
                     <service-pie-chart-usage
-                        production-data="CityData.GlobalDistrict.Population"
-                        consumption-data="CityData.GlobalDistrict.Educated.EligibleWorkers"
+                        production-data="CityData.GlobalDistrict.Population.TotalCurrent"
+                        consumption-data="CityData.GlobalDistrict.Educated.EligibleWorkers.TotalCurrent"
                         color-family="workers"
                         description="City workers in population">
                     </service-pie-chart-usage>
@@ -82,8 +82,8 @@
                 </div>
                 <div class ="col-xs-6">
                     <service-pie-chart-usage
-                        production-data="CityData.GlobalDistrict.Educated.EligibleWorkers"
-                        consumption-data="CityData.GlobalDistrict.Educated.Unemployed"
+                        production-data="CityData.GlobalDistrict.Educated.EligibleWorkers.TotalCurrent"
+                        consumption-data="CityData.GlobalDistrict.Educated.Unemployed.TotalCurrent"
                         color-family="unumployed"
                         description="City unemployed workers">
                     </service-pie-chart-usage>
@@ -105,16 +105,16 @@
             <div class="row">
                 <div class ="col-xs-6">
                     <service-pie-chart-usage
-                        production-data="CityData.GlobalDistrict.Productions.LowEducation"
-                        consumption-data="CityData.GlobalDistrict.Students.LowStudent"
+                        production-data="CityData.GlobalDistrict.Productions.LowEducation.TotalCurrent"
+                        consumption-data="CityData.GlobalDistrict.Students.LowStudent.TotalCurrent"
                         color-family="education1"
                         description="City elementary schools usage">
                     </service-pie-chart-usage>
                 </div>
                 <div class ="col-xs-6">
                     <service-pie-chart-usage
-                        production-data="CityData.GlobalDistrict.Productions.MediumEducation"
-                        consumption-data="CityData.GlobalDistrict.Students.MediumStudent"
+                        production-data="CityData.GlobalDistrict.Productions.MediumEducation.TotalCurrent"
+                        consumption-data="CityData.GlobalDistrict.Students.MediumStudent.TotalCurrent"
                         color-family="education2"
                         description="City colleges usage">
                     </service-pie-chart-usage>
@@ -122,8 +122,8 @@
                 </div>
                 <div class ="col-xs-6">
                     <service-pie-chart-usage
-                        production-data="CityData.GlobalDistrict.Productions.HighEducation"
-                        consumption-data="CityData.GlobalDistrict.Students.HighStudent"
+                        production-data="CityData.GlobalDistrict.Productions.HighEducation.TotalCurrent"
+                        consumption-data="CityData.GlobalDistrict.Students.HighStudent.TotalCurrent"
                         color-family="education3"
                         description="City university usage">
                     </service-pie-chart-usage>
@@ -233,10 +233,10 @@
             <!-- DeathCare -->
             <div class="col-sm-6">
                 <panel-conso-conso
-                    production-service-a="CityData.GlobalDistrict.Productions.DeadC"
-                    consumption-service-a="CityData.GlobalDistrict.Productions.DeadA"
-                    production-service-b="CityData.GlobalDistrict.Productions.Cremate"
-                    consumption-service-b="CityData.GlobalDistrict.Consumptions.Dead"
+                    production-service-a="CityData.GlobalDistrict.Productions.DeadC.TotalCurrent"
+                    consumption-service-a="CityData.GlobalDistrict.Productions.DeadA.TotalCurrent"
+                    production-service-b="CityData.GlobalDistrict.Productions.Cremate.TotalCurrent"
+                    consumption-service-b="CityData.GlobalDistrict.Consumptions.Dead.TotalCurrent"
                     description-service-a="City cemetery usage"
                     description-service-b="City cremation capacity usage"
                     panel-title="Deathcare"
@@ -249,8 +249,8 @@
             <!-- Healthcare -->
             <div class="col-sm-6">
                 <panel-conso-distrib
-                    production-service="CityData.GlobalDistrict.Productions.Heal"
-                    consumption-service="CityData.GlobalDistrict.Consumptions.Sick"
+                    production-service="CityData.GlobalDistrict.Productions.Heal.TotalCurrent"
+                    consumption-service="CityData.GlobalDistrict.Consumptions.Sick.TotalCurrent"
                     distribution-service="CityData.GlobalDistrict.BirthDeath"
                     service-icon="ToolbarIconHealthcare.png"
                     panel-title="Healthcare"

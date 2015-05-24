@@ -12,7 +12,7 @@ namespace CWS_MrSlurpExtensions
 
         public String Description
         {
-            get { return "Add a district and a transport view to Rychard's City Web server (Rychard's mod is required)"; }
+            get { return "Add enhanced staistic view to Rychard's City Web server (Rychard's mod is required)"; }
         }
     }
 }
