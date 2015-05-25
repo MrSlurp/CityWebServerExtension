@@ -12,25 +12,25 @@ namespace CWS_MrSlurpExtensions
         private DistrictManager districtManager = Singleton<DistrictManager>.instance;
 
         Dictionary<string, int> general = new Dictionary<string, int>{
-                                                    {"activeVehicles",0},
-                                                    {"waitCounter",0},
-                                                    {"blockCounter",0},
-                                                    {"delay",0},
-                                                    {"highestWait",0},
-                                                    {"highestBlock",0},
-                                                    {"highestDelay",0},
+                                                    {"ActiveVehicles",0},
+                                                    {"WaitCounter",0},
+                                                    {"BlockCounter",0},
+                                                    {"Delay",0},
+                                                    {"HighestWait",0},
+                                                    {"HighestBlock",0},
+                                                    {"HighestDelay",0},
                                                 };
         public Dictionary<string, int> General
         {
             get { return general; }
         }
         Dictionary<string, int> cityMaintenanceVehicle = new Dictionary<string, int>{
-                                                    {"garbageTrucks",0},
-                                                    {"fireTrucks",0},
-                                                    {"policeCars",0},
+                                                    {"GarbageTrucks",0},
+                                                    {"FireTrucks",0},
+                                                    {"PoliceCars",0},
                                                     {"Ambulances",0},
-                                                    {"hearses",0},
-                                                    {"bodiesInTransit",0},
+                                                    {"Hearses",0},
+                                                    {"BodiesInTransit",0},
                                                 };
         public Dictionary<string, int> CityMaintenanceVehicle
         {
@@ -100,18 +100,18 @@ namespace CWS_MrSlurpExtensions
 
         private void UpdateGeneral(Vehicle vehicle)
         {
-            General["activeVehicles"]++;
-            General["waitCounter"] += vehicle.m_waitCounter;
-            if (vehicle.m_waitCounter > General["highestWait"]) 
-                General["highestWait"] = vehicle.m_waitCounter;
+            General["ActiveVehicles"]++;
+            General["WaitCounter"] += vehicle.m_waitCounter;
+            if (vehicle.m_waitCounter > General["HighestWait"]) 
+                General["HighestWait"] = vehicle.m_waitCounter;
 
-            General["blockCounter"] += vehicle.m_blockCounter;
-            if (vehicle.m_blockCounter > General["highestBlock"]) 
-                General["highestBlock"] = vehicle.m_blockCounter;
+            General["BlockCounter"] += vehicle.m_blockCounter;
+            if (vehicle.m_blockCounter > General["HighestBlock"]) 
+                General["HighestBlock"] = vehicle.m_blockCounter;
 
-            General["delay"] += vehicle.m_waitCounter + vehicle.m_blockCounter;
-            if ((vehicle.m_waitCounter + vehicle.m_blockCounter) > General["highestDelay"]) 
-                General["highestDelay"] = vehicle.m_waitCounter + vehicle.m_blockCounter;
+            General["Delay"] += vehicle.m_waitCounter + vehicle.m_blockCounter;
+            if ((vehicle.m_waitCounter + vehicle.m_blockCounter) > General["HighestDelay"]) 
+                General["HighestDelay"] = vehicle.m_waitCounter + vehicle.m_blockCounter;
         }
 
         private bool UpdateCityMaintenance(Vehicle vehicle, bool buildingisvalid, uint transfertSize)
@@ -120,13 +120,13 @@ namespace CWS_MrSlurpExtensions
             {
                 case ItemClass.Service.Garbage:
                     if (buildingisvalid) 
-                        CityMaintenanceVehicle["garbageTrucks"]++;
+                        CityMaintenanceVehicle["GarbageTrucks"]++;
                     return true;
                 case ItemClass.Service.FireDepartment:
-                    CityMaintenanceVehicle["fireTrucks"]++;
+                    CityMaintenanceVehicle["FireTrucks"]++;
                     return true;
                 case ItemClass.Service.PoliceDepartment:
-                    CityMaintenanceVehicle["policeCars"]++;
+                    CityMaintenanceVehicle["PoliceCars"]++;
                     return true;
                 case ItemClass.Service.HealthCare:
                     if (vehicle.Info.m_vehicleAI.GetType() == typeof(AmbulanceAI))
@@ -134,8 +134,8 @@ namespace CWS_MrSlurpExtensions
                     else if (vehicle.Info.m_vehicleAI.GetType() == typeof(HearseAI))
                         if (buildingisvalid)
                         {
-                            CityMaintenanceVehicle["hearses"]++;
-                            CityMaintenanceVehicle["bodiesInTransit"] += (int)transfertSize;
+                            CityMaintenanceVehicle["Hearses"]++;
+                            CityMaintenanceVehicle["BodiesInTransit"] += (int)transfertSize;
                         }
                     return true;
             }
@@ -147,54 +147,42 @@ namespace CWS_MrSlurpExtensions
             if (!CityServicesVehicles.Keys.Contains(serviceName))
             {
                 CityServicesVehicles.Add(serviceName, new Dictionary<string, object>{
-                                                        {"total",0},
-                                                        {"srcDistricts", new Dictionary<string, int>()},
-                                                        {"dstDistricts", new Dictionary<string, int>()}}
-                                                        /*
-                                                        {"intra",0},
-                                                        {"imports",0},
-                                                        {"exports",0},*/
-                                                        /* following element are added only if required
-                                                        {"importReason", new Dictionary<string, int>()},
-                                                        {"exportReason", new Dictionary<string, int>()},
-                                                        {"otherReason", new Dictionary<string, int>()}}
-                                                         * */
+                                                        {"SrcDistricts", new Dictionary<string, int>()},
+                                                        {"DstDistricts", new Dictionary<string, int>()}}
                                         );
             }
             var svcData = CityServicesVehicles[serviceName];
+            addOrIncrement(ref svcData, "Total");
             bool importing = (vehicle.m_flags & Vehicle.Flags.Importing) == Vehicle.Flags.Importing;
             bool exporting = (vehicle.m_flags & Vehicle.Flags.Exporting) == Vehicle.Flags.Exporting;
             if (importing) addOrIncrement(ref svcData, "Imports");
             if (exporting) addOrIncrement(ref svcData, "Exports");
             if ((!exporting && !importing)) addOrIncrement(ref svcData, "Intra");
-            //CityServicesVehicles[serviceName]["imports"] = (int)CityServicesVehicles[serviceName]["imports"] + (importing ? 1 : 0);
-            //CityServicesVehicles[serviceName]["exports"] = (int)CityServicesVehicles[serviceName]["exports"] + (exporting ? 1 : 0);
-            //CityServicesVehicles[serviceName]["intra"] = (int)CityServicesVehicles[serviceName]["intra"] + ((!exporting && !importing) ? 1 : 0);
-            CityServicesVehicles[serviceName]["Total"] = (int)CityServicesVehicles[serviceName]["Total"] + 1;
 
-            var srcName = getBuildingDistrictName(vehicle.m_sourceBuilding);
-            var dstName = getBuildingDistrictName(vehicle.m_targetBuilding);
             Dictionary<string, int> srcDistrict = (Dictionary<string, int>)CityServicesVehicles[serviceName]["SrcDistricts"];
             Dictionary<string, int> dstDistrict = (Dictionary<string, int>)CityServicesVehicles[serviceName]["DstDistricts"];
-            addOrIncrement(ref srcDistrict, srcName);
-            addOrIncrement(ref dstDistrict, dstName);
 
             var reason = (TransferManager.TransferReason)vehicle.m_transferType;
             string strReason = reason.ToString();
+            VehicleAI vehicleAi = ((VehicleAI)vehicle.Info.GetAI());
+            InstanceID target = vehicleAi.GetTargetID(vehicle.Info.m_instanceID.Vehicle, ref vehicle);
+            InstanceID owner = vehicleAi.GetOwnerID(vehicle.Info.m_instanceID.Vehicle, ref vehicle);
+            var srcName = getBuildingDistrictName(owner);
+            var dstName = getBuildingDistrictName(target);
             if (reason == TransferManager.TransferReason.None)
             {
-                VehicleAI vehicleAi = ((VehicleAI)vehicle.Info.GetAI());
-                Vehicle dummy = vehicle;
-                InstanceID target = vehicleAi.GetTargetID(vehicle.Info.m_instanceID.Vehicle, ref dummy);
                 var _buildingManager = Singleton<BuildingManager>.instance;
-
                 strReason = _buildingManager.m_buildings.m_buffer[target.Building].Info.GetService().ToString();
-
+                srcName = getVehiclePositionDistrictName(vehicle);
             }
+
+            addOrIncrement(ref srcDistrict, srcName);
+            addOrIncrement(ref dstDistrict, dstName);
+
             var svcDictionary = CityServicesVehicles[serviceName];
             string storeCategory = importing ? "ImportingReasons" : (exporting? "ExportingReasons": "IntraReasons" );
             var cat = (Dictionary<string, int>)createOrGetKey(ref svcDictionary, storeCategory);
-            addOrIncrement(ref cat, storeCategory);
+            addOrIncrement(ref cat, strReason);
         }
 
         private void addOrIncrement(ref Dictionary<string, int> src, string name)
@@ -220,10 +208,30 @@ namespace CWS_MrSlurpExtensions
             return (Dictionary<string, int>)src[name];
         }
 
-        private string getBuildingDistrictName(int buildingId)
+        private string getVehiclePositionDistrictName(Vehicle v)
+        {
+            var districtId = (int)districtManager.GetDistrict(v.GetLastFramePosition());
+            return districtManager.GetDistrictName(districtId);
+        }
+
+        private string getCitizenHomeDistrictName(InstanceID citizenId)
         {
             BuildingManager bm = Singleton<BuildingManager>.instance;
-            Building building = bm.m_buildings.m_buffer[buildingId];
+            InstanceManager im = Singleton<InstanceManager>.instance;
+            CitizenManager cm = Singleton<CitizenManager>.instance;
+            var citizen = cm.m_citizens.m_buffer[citizenId.Citizen];
+            Building building = bm.m_buildings.m_buffer[citizen.m_homeBuilding];
+            bool buildingisplayer = building.m_flags.IsFlagSet(Building.Flags.Untouchable) ? false : true;
+            var buildingDistrictId = (int)districtManager.GetDistrict(building.m_position);
+            return buildingisplayer? (buildingDistrictId == 0 ? "City" : districtManager.GetDistrictName(buildingDistrictId)) : "Outside";
+        }
+
+        private string getBuildingDistrictName(InstanceID buildingId)
+        {
+            BuildingManager bm = Singleton<BuildingManager>.instance;
+            InstanceManager im = Singleton<InstanceManager>.instance;
+            InstanceID id = InstanceManager.GetLocation(buildingId);
+            Building building = bm.m_buildings.m_buffer[id.Building];
             bool buildingisplayer = building.m_flags.IsFlagSet(Building.Flags.Untouchable) ? false : true;
             var buildingDistrictId = (int)districtManager.GetDistrict(building.m_position);
             return buildingisplayer? (buildingDistrictId == 0 ? "City" : districtManager.GetDistrictName(buildingDistrictId)) : "Outside";
@@ -259,36 +267,21 @@ namespace CWS_MrSlurpExtensions
                         bool importing = (myv.m_flags & Vehicle.Flags.Importing) == Vehicle.Flags.Importing;
                         bool exporting = (myv.m_flags & Vehicle.Flags.Exporting) == Vehicle.Flags.Exporting;
                         UpdateService(myv, myv.Info.m_class.m_service.ToString(), transfersize);
-                        /*
-                        switch (myv.Info.m_class.m_service)
-                        {
-                            #region public transports
-                            case ItemClass.Service.PublicTransport:
-                                if (myv.Info.m_class.m_subService == ItemClass.SubService.PublicTransportBus)
-                                {
-                                    (CityServicesVehicles["PublicTransport"]["bus"]) = (int)CityServicesVehicles["PublicTransport"]["bus"] +1;
-                                }
-                                break;
-                            #endregion
-                                
-                            case ItemClass.Service.:
-                                UpdateService(myv, "Citizen", transfersize);
-                                break;
-                                
-                            case ItemClass.Service.Commercial:
-                                UpdateService(myv, "Commercial", transfersize);
-                                break;
-                                
-                            case ItemClass.Service.Office:
-                                UpdateService(myv, "Office", transfersize);
-                                break;
-                            case ItemClass.Service.Industrial:
-                                UpdateService(myv, "Industrial", transfersize);
-                                break;
-
-                        }*/
                     }
                 }
+                // convert reason & district src/dest to object list in order to be able to apply filter through angular
+                string[] convertibleSubCollections = new string[]{"SrcDistricts", "DstDistricts", "ImportingReasons", "ExportingReasons", "IntraReasons"};
+                foreach (var svcVehicles in CityServicesVehicles.Values)
+                {
+                    foreach(var elem in convertibleSubCollections)
+                    {
+                        if (svcVehicles.Keys.Contains(elem))
+                        {
+                            svcVehicles[elem] = ((Dictionary<string, int>)svcVehicles[elem]).Select(x=> new Dictionary<string, object>{{"Name",x.Key}, {"Count",x.Value}}).ToList();
+                        }
+                    }
+                }
+
             }
             catch (Exception ex)
             {
