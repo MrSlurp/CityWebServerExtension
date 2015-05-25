@@ -456,11 +456,9 @@
     <None Include="www\assets\fonts\glyphicons-halflings-regular.woff2">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="www\SlurpUI\CityInfo" />
     <None Include="www\SlurpUI\CityInfo2" />
     <Content Include="www\transport.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="www\SlurpUI\CityInfo" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

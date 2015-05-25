@@ -6,7 +6,7 @@
                 <panel-conso-distrib
                     production-service="CityData.GlobalDistrict.Productions.Electricity.TotalCurrent"
                     consumption-service="CityData.GlobalDistrict.Consumptions.Electricity.TotalCurrent"
-                    distribution-service="CityData.GlobalDistrict.Consumptions.Electricity.TotalCurrent"
+                    distribution-service="CityData.GlobalDistrict.Consumptions.Electricity"
                     service-icon="ToolbarIconElectricity.png"
                     distrib-icon="ToolbarIconZoning.png"
                     panel-title="Electricity"
@@ -23,7 +23,7 @@
                     consumption-service-a="CityData.GlobalDistrict.Consumptions.Water.TotalCurrent"
                     production-service-b="CityData.GlobalDistrict.Productions.Sewage.TotalCurrent"
                     consumption-service-b="CityData.GlobalDistrict.Consumptions.Sewage.TotalCurrent"
-                    distribution-service="CityData.GlobalDistrict.Consumptions.Water.TotalCurrent"
+                    distribution-service="CityData.GlobalDistrict.Consumptions.Water"
                     description-service-a="City water capacity usage"
                     description-service-b="City sewage capacity usage"
                     distribution-description="City water consumption distribution by building type"
@@ -43,7 +43,7 @@
                     consumption-service-a="CityData.GlobalDistrict.Productions.GarbageC.TotalCurrent"
                     production-service-b="CityData.GlobalDistrict.Productions.Incineration.TotalCurrent"
                     consumption-service-b="CityData.GlobalDistrict.Consumptions.Garbage.TotalCurrent"
-                    distribution-service="CityData.GlobalDistrict.Consumptions.Garbage.TotalCurrent"
+                    distribution-service="CityData.GlobalDistrict.Consumptions.Garbage"
                     description-service-a="City landfills usage"
                     description-service-b="City incineration capacity usage"
                     distribution-description="City garbage production distribution by building type"
@@ -268,5 +268,45 @@
         <panel-policies
             policies="CityData.GlobalDistrict.Policies">
         </panel-policies>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-24">
+        <div class="panel panel-info">
+            <div class="panel-heading"><div class="panel-title"><span >Vehicles</span></div></div>
+            <div class="row">
+                <div class="col-sm-8">
+                   <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Vehicle count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Total vehicles</td><td>{{CityData.GlobalDistrict.Vehicles.General.activeVehicles}}</td></tr>
+                            <tr><td>Garbage trucks</td><td>{{CityData.GlobalDistrict.Vehicles.CityMaintenanceVehicle.garbageTrucks}}</td></tr>
+                            <tr><td>Fire trucks</td><td>{{CityData.GlobalDistrict.Vehicles.CityMaintenanceVehicle.fireTrucks}}</td></tr>
+                            <tr><td>Police cars</td><td>{{CityData.GlobalDistrict.Vehicles.CityMaintenanceVehicle.policeCars}}</td></tr>
+                            <tr><td>Ambulances</td><td>{{CityData.GlobalDistrict.Vehicles.CityMaintenanceVehicle.Ambulances}}</td></tr>
+                            <tr><td>Hearses</td><td>{{CityData.GlobalDistrict.Vehicles.CityMaintenanceVehicle.hearses}}</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-sm-8">
+                   <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Reasons</th>
+                                <th>Vehicle count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="(reason, count) in CityData.GlobalDistrict.Vehicles.CityServicesVehicles.Residential.otherReason"><td>{{reason}}</td><td>{{count}}</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
