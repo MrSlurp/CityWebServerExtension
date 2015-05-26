@@ -95,6 +95,83 @@ define([
             templateUrl: './app/shared/servicePieChart/servicePieChartView.html'
         }
     })
+    .directive('trafficPieChart', function () {
+        return {
+            scope: {
+                trafficdata: '=',
+                colorFamily: "@",
+                description: "@",
+            },
+            controller: [
+                '$scope',
+                '$element',
+                '$attrs',
+                function ($scope, $element, $attrs) {
+                    var colorFamilies = {
+                        importsexports:{
+                            Goods: "#aa38b6",
+                            Logs: "#086147",
+                            Lumber: "#086147",
+                            Food: "#a6600f",
+                            Grain: "#a6600f",
+                            Coal: "#322642",
+                            Ore: "#2080a9",
+                            Petrol: "#322642",
+                        }
+                    };
+                    $scope.xFunction = function () {
+                        return function (d) {
+                            // capitalize first letter
+                            return d.Name;
+                        };
+                    };
+                    $scope.yFunction = function () {
+                        return function (d) {
+                            return d.Count;
+                        };
+                    };
+                    $scope.colorFunction = function () {
+                        return function (d, i) {
+                            //console.log(JSON.stringify(d.data), i, $attrs.colorFamily);
+                            if (colorFamilies[$attrs.colorFamily])
+                                return colorFamilies[$attrs.colorFamily][d.data.Name];
+                            else
+                                return "#000000";
+                        };
+                    };
+
+                    var totalCount = function (elemList) {
+                        if (elemList == undefined)
+                            return 0;
+                        var total = 0;
+                        for (var elem in elemList) {
+                            total += elemList[elem].Count;
+                        }
+                        return total;
+                    }
+
+                    $scope.toolTipContentFunction = function () {
+                        return function (name, x, y, e, graph) {
+                            //console.log(name + ' '+ x + ' '+ JSON.stringify(y));
+                            var total = totalCount($scope.trafficdata);
+                            if ($scope.trafficdata != undefined) {
+                                var PercentValue = total != 0 ? (y.point.Count / total * 100).toFixed(1) : 'NA';
+                                return '<h3>' + name + '</h3>' + '<p>' + PercentValue + ' % </p>' +
+                                       '<p>(' + y.point.Count + '/' + total + ')</p>';
+                            }
+                            else
+                                return 'Error';
+                        }
+                    }
+
+                }
+            ],
+            transclude: true,
+            bindToController: true,
+            restrict: 'E',
+            templateUrl: './app/shared/servicePieChart/trafficPieChartView.html'
+        }
+    })
     .directive('serviceImportExportRepartitionChart', function () {
         return {
             scope: {

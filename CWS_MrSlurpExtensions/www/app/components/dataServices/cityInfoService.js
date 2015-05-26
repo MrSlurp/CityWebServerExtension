@@ -28,29 +28,41 @@ define([
 
         var _internalGetDistrictIds = function () {
             console.log("request for district ids");
-            var url = _fileSwitch == false ? "showList" : "showList2";
-            if (_LocalTest == true) {
-                url = "SlurpUI/" + url;
-                _fileSwitch = !_fileSwitch;
-            }
+            var url = "CityInfo?showList=";
             $http.get(url).success(function (response) {
-                _localData = response;
-                for (var idx in _subscribers) {
-                    _subscribers[idx]();
+                if (_districtListChanged(response)) {
+                    // if any change occured in district list, request for full city data 
+                    // <enhancement> => request only new district (not sure the perf gain would worth it)
+                    _internalGetCityData();
                 }
+                else
+                    _internalGetActiveDistrict();
             });
+        }
 
+        var getDistrictIndex = function (districtId) {
+            if (!_localData)
+                return 0;
+            for (var idx in _localData.Districts) {
+                var district = _localData.Districts[idx];
+                if (district.DistrictID == districtId)
+                    return idx;
+            }
+            return 0;
         }
 
         var _internalGetActiveDistrict = function () {
             console.log("request for district ids");
-            var url = "districtID="+_activeDistrictId;
-            if (_LocalTest == true) {
-                url = "SlurpUI/" + url;
-                _fileSwitch = !_fileSwitch;
-            }
+            var url = "CityInfo?districtID=" + _activeDistrictId;
             $http.get(url).success(function (response) {
-                _localData = response;
+                if (response.GlobalDistrict != null) {
+                    _localData.GlobalDistrict = response.GlobalDistrict;
+                }
+                for (var index in response.Districts) {
+                    console.log("updating district id = "+ response.Districts[index].DistrictID);
+                    var dindex = getDistrictIndex(response.Districts[index].DistrictID);
+                    _localData.Districts[dindex] = response.Districts[index];
+                }
                 for (var idx in _subscribers) {
                     _subscribers[idx]();
                 }
@@ -59,7 +71,7 @@ define([
         }
 
         var _districtListChanged = function (districtIds) {
-            if (!_localData)
+            if (!_localData || !districtIds)
                 return true;
 
             for (var idx in _localData.Districts) {
@@ -74,14 +86,7 @@ define([
             if (_LocalTest)
                 _internalGetCityData();
             else {
-                var districts = _internalGetDistrictIds();
-                if (_districtListChanged(districts)) {
-                    // if any changed occured in district list, request for full city data 
-                    // <enhancement> => request only new district (not sure the perf gain would worth it)
-                    _internalGetCityData();
-                }
-                else
-                    _internalGetActiveDistrict();
+                _internalGetDistrictIds();
             }
 
         }.bind(this), 3000);
