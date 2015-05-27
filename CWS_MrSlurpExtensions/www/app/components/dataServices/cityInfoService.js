@@ -83,6 +83,7 @@ define([
         }
 
         var promise = $interval(function () {
+            console.log("active district Id = " + _activeDistrictId);
             if (_LocalTest)
                 _internalGetCityData();
             else {
@@ -98,6 +99,9 @@ define([
             },
             registerSubscriber: function (subscriber) {
                 _subscribers.push(subscriber);
+            },
+            setActiveDistrictId: function (id) {
+                _activeDistrictId = id;
             }
         }
     });

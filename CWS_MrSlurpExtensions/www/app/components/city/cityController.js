@@ -13,6 +13,7 @@ define([
         cityInfoService.registerSubscriber(function () {
             update();
         });
+        cityInfoService.setActiveDistrictId(0);
         update();
     });
 });

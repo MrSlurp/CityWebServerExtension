@@ -29,9 +29,12 @@
             </div>
             <div style="margin:10px;"></div>
             <tabset type="pills" >
-                <tab ng-repeat="dist in selectionTab.selectedDistricts" heading="{{dist.DistrictName}}" active="dist.districtVisible">
+                <tab ng-repeat="dist in selectionTab.selectedDistricts" heading="{{dist.DistrictName}}" active="dist.districtVisible" ng-click="selectActiveDistrict(dist.DistrictID)">
                     <ng-include
                         src="'./app/components/district/districtFullView.html'">
+                    </ng-include>
+                    <ng-include
+                        src="'./app/components/district/districtTrafficView.html'">
                     </ng-include>
                     <div class="clearfix"></div>
                 </tab>

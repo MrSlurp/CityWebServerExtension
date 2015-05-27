@@ -22,6 +22,7 @@ define([
                 var selectionChange = function () {
                     var nbDistrictSelected = districtSelectionTab.selectedDistricts.length;
                     districtSelectionTab.TabTitle = nbDistrictSelected == 0 ? "No Selection" : (nbDistrictSelected + " Selected");
+                    $scope.selectActiveDistrict(nbDistrictSelected == 0 ? 0 : districtSelectionTab.selectedDistricts[0]);
                 }
                 // adding events
                 districtSelectionTab.events = {
@@ -34,6 +35,11 @@ define([
             }
 
             $scope.DistrictSelectionsTabs[i] = PrepareTab();
+        }
+
+        $scope.selectActiveDistrict = function(id)
+        {
+            cityInfoService.setActiveDistrictId(id);
         }
         // select combobox settings
         // all combobox uses the same settings and the same data source (city districts)
@@ -66,6 +72,7 @@ define([
                     districtSelectionsTab.selectedDistricts.push(district);
                 }
             }
+            $scope.selectActiveDistrict(districtSelectionsTab.length == 0 ? 0 : districtSelectionsTab.selectedDistricts[0].DistrictID);
             districtSelectionsTab.TabTitle = "Mostly " + categoryName;
         }
 
