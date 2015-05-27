@@ -95,6 +95,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <tr><td>Total</td><td>{{CityData.GlobalDistrict.Vehicles.CityServicesVehicles.Residential.Total}}</td></tr>
                             <tr ng-repeat="dist in CityData.GlobalDistrict.Vehicles.CityServicesVehicles.Residential.SrcDistricts | orderBy:'-Count' | limitTo:5">
                                 <td>{{dist.Name}}</td><td>{{dist.Count}}</td></tr>
                         </tbody>
@@ -111,6 +112,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <tr><td>Total</td><td>{{CityData.GlobalDistrict.Vehicles.CityServicesVehicles.Residential.Total}}</td></tr>
                             <tr ng-repeat="dist in CityData.GlobalDistrict.Vehicles.CityServicesVehicles.Residential.DstDistricts | orderBy:'-Count' | limitTo:5">
                                 <td>{{dist.Name}}</td><td>{{dist.Count}}</td></tr>
                         </tbody>
@@ -124,7 +126,7 @@
             <div class="panel-heading"><div class="panel-title"><span >Industrial vehicles</span></div></div>
             <div class="row">
                 <div class="col-sm-12">
-                    <div>Industrial vehicles current districts</div>
+                    <div>Industrial vehicles owner districts</div>
                     <table class="table table-bordered table-striped table-condensed">
                         <thead>
                             <tr>
@@ -133,6 +135,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <tr><td>Total</td><td>{{CityData.GlobalDistrict.Vehicles.CityServicesVehicles.Industrial.Total}}</td></tr>
                             <tr ng-repeat="dist in CityData.GlobalDistrict.Vehicles.CityServicesVehicles.Industrial.SrcDistricts | orderBy:'-Count' | limitTo:5">
                                 <td>{{dist.Name}}</td><td>{{dist.Count}}</td></tr>
                         </tbody>
@@ -149,6 +152,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <tr><td>Total</td><td>{{CityData.GlobalDistrict.Vehicles.CityServicesVehicles.Industrial.Total}}</td></tr>
                             <tr ng-repeat="dist in CityData.GlobalDistrict.Vehicles.CityServicesVehicles.Industrial.DstDistricts | orderBy:'-Count' | limitTo:5">
                                 <td>{{dist.Name}}</td><td>{{dist.Count}}</td></tr>
                         </tbody>

@@ -22,7 +22,7 @@ define([
                 var selectionChange = function () {
                     var nbDistrictSelected = districtSelectionTab.selectedDistricts.length;
                     districtSelectionTab.TabTitle = nbDistrictSelected == 0 ? "No Selection" : (nbDistrictSelected + " Selected");
-                    $scope.selectActiveDistrict(nbDistrictSelected == 0 ? 0 : districtSelectionTab.selectedDistricts[0]);
+                    $scope.selectActiveDistrict(nbDistrictSelected == 0 ? 0 : districtSelectionTab.selectedDistricts[0].DistrictID);
                 }
                 // adding events
                 districtSelectionTab.events = {
@@ -39,6 +39,7 @@ define([
 
         $scope.selectActiveDistrict = function(id)
         {
+            console.log("setting active district = " + JSON.stringify(id));
             cityInfoService.setActiveDistrictId(id);
         }
         // select combobox settings

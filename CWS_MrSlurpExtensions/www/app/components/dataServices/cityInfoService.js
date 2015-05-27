@@ -52,7 +52,6 @@ define([
         }
 
         var _internalGetActiveDistrict = function () {
-            console.log("request for district ids");
             var url = "CityInfo?districtID=" + _activeDistrictId;
             $http.get(url).success(function (response) {
                 if (response.GlobalDistrict != null) {
@@ -83,14 +82,14 @@ define([
         }
 
         var promise = $interval(function () {
-            console.log("active district Id = " + _activeDistrictId);
+            console.log("active district Id = " + JSON.stringify(_activeDistrictId));
             if (_LocalTest)
                 _internalGetCityData();
             else {
                 _internalGetDistrictIds();
             }
 
-        }.bind(this), 3000);
+        }.bind(this), 1000);
         _internalGetCityData();
 
         return {
