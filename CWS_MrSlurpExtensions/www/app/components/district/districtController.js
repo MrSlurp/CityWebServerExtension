@@ -2,14 +2,15 @@
 
 define([
     'app/components/district/module',
-    'app/components/dataServices/cityInfoService'
+    'app/components/dataServices/cityInfoService',
 ], function (module) {
-    module.controller('DistrictCtrl', function ($scope, cityInfoService, $interval) {
+    module.controller('DistrictCtrl', function ($scope, cityInfoService, $interval, $cookies) {
         console.log("DistrictCtrl Controller reporting for duty.");
 
         $scope.DistricMap = {};
 
-        $scope.DistrictSelectionsTabs = {};
+        $scope.DistrictSelectionsTabs = {} ;
+
         // creating the object list of district tabs
         for (var i = 0; i < 6; i++) {
             var PrepareTab = function () {
@@ -37,7 +38,10 @@ define([
             $scope.DistrictSelectionsTabs[i] = PrepareTab();
         }
 
-        $scope.selectActiveDistrict = function(id)
+        ////////////////////////////////////////
+        //
+        ////////////////////////////////////////
+        $scope.selectActiveDistrict = function (id)
         {
             console.log("setting active district = " + JSON.stringify(id));
             cityInfoService.setActiveDistrictId(id);
@@ -53,7 +57,9 @@ define([
             scrollableHeight:450,
         };
 
-        var firstUpdateDone = false;
+        ////////////////////////////////////////
+        //
+        ////////////////////////////////////////
         $scope.selectMostlyOfCategory = function (districtSelectionsTab, categoryName) {
             var getMostPresentTypeFromService = function (service) {
                 var greatestValue = 0;
@@ -77,6 +83,9 @@ define([
             districtSelectionsTab.TabTitle = "Mostly " + categoryName;
         }
 
+        ////////////////////////////////////////
+        //
+        ////////////////////////////////////////
         var update = function () {
             $scope.globalDistrict = cityInfoService.getCityData().GlobalDistrict;
             $scope.allDistrict = cityInfoService.getCityData().Districts
@@ -102,6 +111,23 @@ define([
             }
         }
 
+        ////////////////////////////////////////
+        //
+        ////////////////////////////////////////
+        var storeSelectionToCookie = function () {
+            $cookies.putObject($scope.DistrictSelectionsTabs);
+        }
+
+        ////////////////////////////////////////
+        //
+        ////////////////////////////////////////
+        var restoreSelectionFromCookie = function () {
+            var previousSelection = $cookies.get('districtSelection');
+        }
+
+        ////////////////////////////////////////
+        //
+        ////////////////////////////////////////
         $scope.SmartColumnLayoutPanel = function () {
             if (arguments.length < 2)
                 return 24;
@@ -114,6 +140,9 @@ define([
             return count*coeff;
         }
 
+        ////////////////////////////////////////
+        //
+        ////////////////////////////////////////
         $scope.SmartColumnLayoutElement = function () {
             var count = 0;
             for (var index = 0 ; index < arguments.length; index++) {
@@ -125,7 +154,10 @@ define([
             return parseInt(24 / count);
         }
 
-        $scope.IsServiceInfoValuable = function(serviceData)
+        ////////////////////////////////////////
+        //
+        ////////////////////////////////////////
+        $scope.IsServiceInfoValuable = function (serviceData)
         {
             if (typeof (serviceData) == "boolean") {
                 return serviceData;
@@ -135,7 +167,10 @@ define([
             return false;
         }
 
-        $scope.IsPanelInfoValuable = function() //(...)
+        ////////////////////////////////////////
+        //
+        ////////////////////////////////////////
+        $scope.IsPanelInfoValuable = function () //(...)
         {
             // arguments are services datas
             for (var index in arguments) {
@@ -145,7 +180,6 @@ define([
             return false;
         }
 
-        // in case of district view
         cityInfoService.registerSubscriber(function () {
             update();
         });

@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-sm-12 col-xs-8" style="position:relative">
             <img ng-src="{{serviceIcon != undefined ? 'assets/img/game/'+serviceIcon : ''}}" style="position:absolute;width:20%;height:20%;" 
-                 ng-show="serviceIcon != undefined"/>
+                 ng-if="serviceIcon != undefined"/>
             <service-pie-chart-usage
                 production-data="productionService"
                 consumption-data="consumptionService"
@@ -13,7 +13,7 @@
         </div>
         <div class="col-sm-12 col-xs-8" style="position:relative">
             <img ng-src="{{distribIcon != undefined ? 'assets/img/game/'+distribIcon : ''}}" style="position:absolute;width:20%;height:20%;" 
-                 ng-show="distribIcon != undefined"/>
+                 ng-if="distribIcon != undefined"/>
             <service-pie-chart 
                 data="distributionService" 
                 color-family="{{distribColorFamily}}" 

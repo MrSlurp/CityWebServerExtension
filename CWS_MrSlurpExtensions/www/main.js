@@ -6,6 +6,7 @@ require.config({
         lodash: 'assets/libs/lodash',
         angular: 'assets/libs/angular',
         angularRoute: 'assets/libs/angular-route',
+        angularCookies: 'assets/libs/angular-cookies',
         d3: 'assets/libs/d3',
         nvd3: 'assets/libs/nv.d3',
         nvd3directives: 'assets/libs/angularjs-nvd3-directives',
@@ -14,7 +15,8 @@ require.config({
 },
     shim: {
         angular: { 'exports': 'angular', deps:['jquery'] },
-        angularRoute: {deps: ['angular']},
+        angularRoute: { deps: ['angular'] },
+        angularCookies: { deps: ['angular'] },
         d3: { deps: ['angular'] },
         nvd3: { deps: ['angular', 'd3'] },
         nvd3directives: {deps: ['angular', 'nvd3']},
@@ -25,6 +27,7 @@ require.config({
 
 var dependencies = [
     'angular',
+    'angularCookies',
     'bootstrapUI',
     'app/components/city/index',
     'app/components/district/index',

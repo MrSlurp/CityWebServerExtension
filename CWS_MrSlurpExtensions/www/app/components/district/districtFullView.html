@@ -55,7 +55,7 @@
     <!-- Educated/work 
         if population is 0, there is not reasons to display this panel
         -->
-    <div class="col-sm-12" ng-show="IsPanelInfoValuable(dist.Population)">
+    <div class="col-sm-12" ng-if="IsPanelInfoValuable(dist.Population)">
         <div class="panel panel-info">
             <div class="panel-heading"><div class="panel-title"><span >Workers</span></div></div>
             <div class="row">
@@ -94,13 +94,13 @@
     </div>
     <!-- Education -->
     <div ng-class=" 'col-sm-'+SmartColumnLayoutPanel(3,dist.Productions.LowEducation, dist.Productions.MediumEducation, dist.Productions.HighEducation, dist.Educated.Total)"
-        ng-show="IsPanelInfoValuable(dist.Productions.LowEducation, dist.Productions.MediumEducation, dist.Productions.HighEducation, dist.Educated.Total)">
+        ng-if="IsPanelInfoValuable(dist.Productions.LowEducation, dist.Productions.MediumEducation, dist.Productions.HighEducation, dist.Educated.Total)">
         <div class="panel panel-info" 
-            ng-show="IsPanelInfoValuable(dist.Productions.LowEducation, dist.Productions.MediumEducation, dist.Productions.HighEducation, dist.Educated.Total)">
+            ng-if="IsPanelInfoValuable(dist.Productions.LowEducation, dist.Productions.MediumEducation, dist.Productions.HighEducation, dist.Educated.Total)">
             <div class="panel-heading"><div class="panel-title"><span >Education</span></div></div>
             <div class="row">
                 <div ng-class="'col-sm-'+SmartColumnLayoutElement(dist.Productions.LowEducation, dist.Productions.MediumEducation, dist.Productions.HighEducation, dist.Educated.Total)"
-                        ng-show="IsPanelInfoValuable(dist.Productions.LowEducation)">
+                        ng-if="IsPanelInfoValuable(dist.Productions.LowEducation)">
                     <service-pie-chart-usage
                         production-data="dist.Productions.LowEducation.TotalCurrent"
                         consumption-data="dist.Students.LowStudent.TotalCurrent"
@@ -109,7 +109,7 @@
                     </service-pie-chart-usage>
                 </div>
                 <div ng-class="'col-sm-'+SmartColumnLayoutElement(dist.Productions.LowEducation, dist.Productions.MediumEducation, dist.Productions.HighEducation, dist.Educated.Total)"
-                    ng-show="IsPanelInfoValuable(dist.Productions.MediumEducation)">
+                    ng-if="IsPanelInfoValuable(dist.Productions.MediumEducation)">
                     <service-pie-chart-usage
                         production-data="dist.Productions.MediumEducation.TotalCurrent"
                         consumption-data="dist.Students.MediumStudent.TotalCurrent"
@@ -118,7 +118,7 @@
                     </service-pie-chart-usage>
                 </div>
                 <div ng-class="'col-sm-'+SmartColumnLayoutElement(dist.Productions.LowEducation, dist.Productions.MediumEducation, dist.Productions.HighEducation, dist.Educated.Total)"
-                    ng-show="IsPanelInfoValuable(dist.Productions.HighEducation)">
+                    ng-if="IsPanelInfoValuable(dist.Productions.HighEducation)">
                     <service-pie-chart-usage
                         production-data="dist.Productions.HighEducation.TotalCurrent"
                         consumption-data="dist.Students.HighStudent.TotalCurrent"
@@ -127,7 +127,7 @@
                     </service-pie-chart-usage>
                 </div>
                 <div ng-class="'col-sm-'+SmartColumnLayoutElement(dist.Productions.LowEducation, dist.Productions.MediumEducation, dist.Productions.HighEducation, dist.Educated.Total)"
-                    ng-show="IsPanelInfoValuable(dist.Educated.Total)">
+                    ng-if="IsPanelInfoValuable(dist.Educated.Total)">
                     <service-pie-chart 
                         data="dist.Educated.Total" 
                         color-family="education" 
@@ -139,12 +139,12 @@
     </div>  
     <!-- Import/export -->
     <div ng-class=" 'col-sm-'+SmartColumnLayoutPanel(3,dist.ImportExport.Import, dist.ImportExport.Export, (dist.ImportExport.Import.TotalCurrent!=0 || dist.ImportExport.Export.TotalCurrent != 0) )"
-        ng-show="IsPanelInfoValuable(dist.ImportExport.Import, dist.ImportExport.Export, (dist.ImportExport.Import.TotalCurrent!=0 || dist.ImportExport.Export.TotalCurrent != 0))">
+        ng-if="IsPanelInfoValuable(dist.ImportExport.Import, dist.ImportExport.Export, (dist.ImportExport.Import.TotalCurrent!=0 || dist.ImportExport.Export.TotalCurrent != 0))">
         <div class="panel panel-info">
             <div class="panel-heading"><div class="panel-title"><span >Import/Export</span></div></div>
             <div class="row">
                 <div ng-class="'col-sm-'+SmartColumnLayoutElement(dist.ImportExport.Import, dist.ImportExport.Export, (dist.ImportExport.Import.TotalCurrent!=0 || dist.ImportExport.Export.TotalCurrent != 0))"
-                    ng-show="IsPanelInfoValuable(dist.ImportExport.Import)">
+                    ng-if="IsPanelInfoValuable(dist.ImportExport.Import)">
                     <service-pie-chart 
                         data="dist.ImportExport.Import" 
                         color-family="service" 
@@ -152,7 +152,7 @@
                     </service-pie-chart>
                 </div>
                 <div ng-class="'col-sm-'+SmartColumnLayoutElement(dist.ImportExport.Import, dist.ImportExport.Export, (dist.ImportExport.Import.TotalCurrent!=0 || dist.ImportExport.Export.TotalCurrent != 0))"
-                    ng-show="IsPanelInfoValuable(dist.ImportExport.Export)">
+                    ng-if="IsPanelInfoValuable(dist.ImportExport.Export)">
                     <service-pie-chart 
                         data="dist.ImportExport.Export" 
                         color-family="service" 
@@ -172,12 +172,12 @@
     </div>
     <!-- Others -->
     <div ng-class=" 'col-sm-'+SmartColumnLayoutPanel(3,dist.Households, dist.Consumptions.Building, dist.Population )"
-        ng-show="IsPanelInfoValuable(dist.Households, dist.Consumptions.Building, dist.Population)">
+        ng-if="IsPanelInfoValuable(dist.Households, dist.Consumptions.Building, dist.Population)">
         <div class="panel panel-info">
             <div class="panel-heading"><div class="panel-title"><span >Others</span></div></div>
             <div class="row">
                 <div ng-class="'col-sm-'+SmartColumnLayoutElement(dist.Households, dist.Consumptions.Building, dist.Population)"
-                    ng-show="IsPanelInfoValuable(dist.Households)">
+                    ng-if="IsPanelInfoValuable(dist.Households)">
                     <indicator-widget 
                         total="dist.Households.TotalAvailable"
                         actual="dist.Households.TotalCurrent" 
@@ -186,7 +186,7 @@
                 </div>
 
                 <div ng-class="'col-sm-'+SmartColumnLayoutElement(dist.Households, dist.Consumptions.Building, dist.Population)"
-                    ng-show="IsPanelInfoValuable(dist.Consumptions.Building)">
+                    ng-if="IsPanelInfoValuable(dist.Consumptions.Building)">
                     <service-pie-chart 
                         data="dist.Consumptions.Building" 
                         color-family="service" 
@@ -194,7 +194,7 @@
                     </service-pie-chart>
                 </div>
                 <div ng-class="'col-sm-'+SmartColumnLayoutElement(dist.Households, dist.Consumptions.Building, dist.Population)"
-                    ng-show="IsPanelInfoValuable(dist.Population)">
+                    ng-if="IsPanelInfoValuable(dist.Population)">
                     <service-pie-chart 
                         data="dist.Population" 
                         color-family="populationages"
@@ -205,7 +205,7 @@
         </div>
     </div>
     <!-- DeathCare -->
-    <div class="col-xs-6" ng-show="IsPanelInfoValuable(dist.Consumptions.Dead)" >
+    <div class="col-xs-6" ng-if="IsPanelInfoValuable(dist.Consumptions.Dead)" >
         <div class="panel panel-info">
             <div class="panel-heading"><div class="panel-title"><span >Deathcare</span></div></div>
             <div class="row">
@@ -231,7 +231,7 @@
         </div>
     </div>
     <!-- Healthcare -->
-    <div class="col-sm-6" ng-show="IsPanelInfoValuable(dist.Consumptions.Sick, dist.BirthDeath)">
+    <div class="col-sm-6" ng-if="IsPanelInfoValuable(dist.Consumptions.Sick, dist.BirthDeath)">
         <div class="panel panel-info">
             <div class="panel-heading"><div class="panel-title"><span >Healthcare</span></div></div>
             <div class="row">

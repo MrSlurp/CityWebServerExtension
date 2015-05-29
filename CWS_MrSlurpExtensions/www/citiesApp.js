@@ -3,6 +3,7 @@
 define([
     'angular',
     'angularRoute',
+    'angularCookies',
     'app/components/city/index',
     'app/components/district/index'
 ],
