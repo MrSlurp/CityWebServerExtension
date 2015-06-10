@@ -12,7 +12,7 @@ define([
         var _activeDistrictId = 0;
 
         var _internalGetCityData = function () {
-            console.log("request for city data");
+            //console.log("request for city data");
             var url = _fileSwitch == false ? "CityInfo" : "CityInfo2";
             if (_LocalTest == true) {
                 url = "SlurpUI/" + url;
@@ -27,7 +27,7 @@ define([
         }
 
         var _internalGetDistrictIds = function () {
-            console.log("request for district ids");
+            //console.log("request for district ids");
             var url = "CityInfo?showList=";
             $http.get(url).success(function (response) {
                 if (_districtListChanged(response)) {
@@ -58,7 +58,7 @@ define([
                     _localData.GlobalDistrict = response.GlobalDistrict;
                 }
                 for (var index in response.Districts) {
-                    console.log("updating district id = "+ response.Districts[index].DistrictID);
+                    //console.log("updating district id = "+ response.Districts[index].DistrictID);
                     var dindex = getDistrictIndex(response.Districts[index].DistrictID);
                     _localData.Districts[dindex] = response.Districts[index];
                 }
@@ -80,15 +80,15 @@ define([
             }
             return false;
         }
-
+        
         var promise = $interval(function () {
-            console.log("active district Id = " + JSON.stringify(_activeDistrictId));
+            //console.log("active district Id = " + JSON.stringify(_activeDistrictId));
             if (_LocalTest)
                 _internalGetCityData();
             else {
                 _internalGetDistrictIds();
             }
-
+            
         }.bind(this), 1000);
         _internalGetCityData();
 
